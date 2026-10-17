@@ -266,3 +266,8 @@ Limitations:
   JS errors. Both README previews were refreshed and the dark capture inspected.
 - Included `theme.js` in the Pages copy list and release ZIP input list. No new
   live Twitch or account check was required for this UI change.
+
+## 1.2.1 heading copy — 2026-10-17
+
+- Changed the main heading to “Is that name available?”. Syntax/unit checks and
+  a local Chrome light/dark check at 320px passed; refreshed both README previews.
