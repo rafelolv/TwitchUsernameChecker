@@ -220,3 +220,8 @@ Limitations:
   colors, uniform 1px borders, labels, fallback warnings, failed requests and a
   320px layout without JS errors. Visually inspected the result and refreshed the
   README with an example response. No new live API check was needed.
+
+## 1.0.10 heading cleanup — 2026-10-17
+
+- Removed the decorative Twitch Usernames label and its styles. Syntax/unit
+  checks and a local Chrome heading/result smoke check passed; README preview refreshed.

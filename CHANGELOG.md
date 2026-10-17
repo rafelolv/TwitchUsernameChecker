@@ -3,6 +3,10 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.0.10
+
+- Remove the decorative label above the main heading and its unused styles.
+
 ## 1.0.9
 
 - Highlight Available with soft sage and Unavailable with muted clay, without

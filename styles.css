@@ -106,23 +106,6 @@ button[hidden],
   text-align: center;
   padding: 62px 0 32px;
 }
-.eyebrow {
-  font-size: 10px;
-  letter-spacing: 1.65px;
-  font-weight: 700;
-  color: var(--purple);
-  display: flex;
-  gap: 9px;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 21px;
-}
-.eyebrow span {
-  height: 6px;
-  width: 6px;
-  background: var(--purple);
-  border-radius: 50%;
-}
 h1 {
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(39px, 6.8vw, 62px);
@@ -500,10 +483,6 @@ details a {
   }
   .hero {
     padding: 43px 0 29px;
-  }
-  .eyebrow {
-    font-size: 8px;
-    letter-spacing: 1.15px;
   }
   h1 {
     letter-spacing: -2px;
