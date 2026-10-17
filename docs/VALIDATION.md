@@ -147,3 +147,23 @@ Limitations:
 - Syntax/unit checks passed. One local Chrome smoke check covered the revised
   page, an absent-profile result, a 320px viewport and no JavaScript errors.
 - No new live Twitch or full browser matrix was run for this copy-only change.
+
+## 1.0.4 availability investigation and fallback — 2026-10-17
+
+- Compared the maintainer-reported held `Falsiq` and claimable `Falsiqkdkdk34`.
+  Current GraphQL and the persisted signup validator returned null availability
+  with `IntegrityCheckFailed` for both. Legacy passport lookup returned 404 for
+  both; the historical userOrError field was absent and introspection disabled.
+- A fresh native signup page showed an email-first form, not a username field.
+  No personal data was entered and no registration or username change was made.
+  See [the full investigation](AVAILABILITY.md) for evidence and limitations.
+- Preserved internal classification. Unconfirmed absent-profile lookups display
+  amber “Possibly available” with an always-visible reservation warning and a
+  signup link. Confirmed availability remains green; failed lookups never use
+  the fallback. This does not establish which of the two names can be claimed.
+- Syntax/unit checks passed. One temporary Chrome 154.0.8037.97 local smoke run
+  checked the fallback warning, true/false availability, failed lookup, signup
+  destination and 320px layout without JS errors. Separate live queries of both
+  names showed the unverified fallback and visible warning. README preview updated.
+- No signed-in rename, completed registration, personal browser profile, account
+  change or bypass of integrity checks was involved.

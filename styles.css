@@ -329,6 +329,13 @@ kbd {
   background: #fbf3e7;
   border-color: var(--amber);
 }
+.result[data-state="unknown"] {
+  background: #fbf3e7;
+  border-color: var(--amber);
+}
+.dot.unknown {
+  background: var(--amber);
+}
 .result-heading {
   display: flex;
   align-items: center;
@@ -357,6 +364,13 @@ kbd {
   margin: 16px 0;
   padding-block: 12px;
   border-block: 1px solid #45248020;
+}
+.result .result-caveat {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #9a6a2440;
+  color: #79511b;
+  font-size: 12px;
 }
 .result-facts:empty {
   display: none;

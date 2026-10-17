@@ -26,24 +26,29 @@ again when selected.
 
 ## What it can confirm
 
-| Result                | Evidence                                                         |
-| --------------------- | ---------------------------------------------------------------- |
-| Taken                 | Twitch returned an existing account.                             |
-| Available             | No account and an explicit successful availability response.     |
-| Unavailable           | No account and an explicit successful rejection of availability. |
-| No account found      | Twitch returned no account; availability could not be verified.  |
-| Failed / rate-limited | The lookup failed or Twitch limited requests.                    |
+| Result                | Evidence                                                              |
+| --------------------- | --------------------------------------------------------------------- |
+| Taken                 | Twitch returned an existing account.                                  |
+| Available             | No account and an explicit successful availability response.          |
+| Unavailable           | No account and an explicit successful rejection of availability.      |
+| Possibly available    | No public profile; claimability is unconfirmed and may be restricted. |
+| Failed / rate-limited | The lookup failed or Twitch limited requests.                         |
 
 **A missing profile does not mean a free name.** This app uses Twitch's
 unsupported internal GraphQL endpoint. During initial live checks, profile
 lookup worked, but availability returned `IntegrityCheckFailed`. The app shows
-**“No account found”**, with **“Availability: Not verified”**, in that case and links to Twitch for final confirmation.
+**“Possibly available”** in amber, with **“Availability: Not verified”** and a
+visible warning that the name may still be reserved or held. This fallback is not
+a confirmed result or a claim that the name is likely to be free.
+**“Available”** in green requires an actual confirmation from Twitch.
 It does not bypass integrity checks. A proxy alone does not remove that restriction.
 
 Only Twitch registration or username editing can confirm that you can claim a
 name. Availability can change; this tool does not reserve names or predict release
 dates. See [architecture](docs/ARCHITECTURE.md) and
 [actual validation results](docs/VALIDATION.md).
+The [availability investigation](docs/AVAILABILITY.md) compares the methods tested
+with user-reported held and free names and explains why they can share a result.
 
 ## Run locally
 

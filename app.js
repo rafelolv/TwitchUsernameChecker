@@ -39,14 +39,16 @@ const states = {
     url: "https://www.twitch.tv/settings/profile",
   },
   unknown: {
-    label: "No account found",
-    title: "Thinking of using it?",
+    label: "Possibly available",
+    title: "Confirm it on Twitch.",
     description:
-      "Try it in Twitch's sign-up form or under Settings → Profile. Twitch hasn't confirmed whether this name is free.",
+      "We couldn't find a public profile with this name, but Twitch hasn't confirmed whether you can claim it.",
+    caveat:
+      "Availability isn't confirmed. The name could still be reserved or held after a rename, suspension or deactivation.",
     profile: "Not found",
     availability: "Not verified",
-    action: "Check availability on Twitch ↗",
-    url: "https://www.twitch.tv/settings/profile",
+    action: "Confirm on Twitch ↗",
+    url: "https://www.twitch.tv/signup",
   },
   error: {
     label: "Lookup failed",
@@ -182,7 +184,17 @@ function renderResult(item) {
       facts.append(row);
     }
   }
-  result.replaceChildren(heading, title, facts, description, actions, time);
+  const caveat = element("p", "result-caveat", content.caveat);
+  caveat.hidden = !content.caveat;
+  result.replaceChildren(
+    heading,
+    title,
+    facts,
+    description,
+    caveat,
+    actions,
+    time,
+  );
 }
 
 function syncInput() {

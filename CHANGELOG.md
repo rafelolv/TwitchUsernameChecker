@@ -3,6 +3,13 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.0.4
+
+- Show unconfirmed absent-profile lookups as amber “Possibly available”, with an
+  explicit reservation warning and a link to Twitch signup.
+- Keep green “Available” exclusive to confirmed availability responses.
+- Document the live investigation of held versus claimable names.
+
 ## 1.0.3
 
 - Simplify page and result copy with more natural English, shorter help text and

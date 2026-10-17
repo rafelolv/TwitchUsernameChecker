@@ -28,9 +28,10 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
 - `checker.js` owns requests and classification. Only a successful availability
   boolean with a confirmed absent user permits `available` or `unavailable`.
   Missing profiles, HTTP errors, timeouts and integrity challenges never prove
-  availability. Preserve `unknown`, `error` and `rate-limited` states. Show a
-  successful absent-profile lookup as “No account found” with availability separate;
-  do not make a successful profile lookup look like a failed request.
+  availability. Preserve `unknown`, `error` and `rate-limited` states. An absent
+  profile with blocked availability displays “Possibly available” in amber with
+  “Availability: Not verified” and a visible reservation warning. Never present
+  this fallback as confirmed or green. Errors must not become possibly available.
 - Twitch GraphQL is internal and unsupported. Do not bypass integrity checks,
   embed credentials, promise availability or predict name-release dates. A proxy
   alone does not solve the integrity restriction.

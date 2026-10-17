@@ -35,10 +35,13 @@ not the official Helix API. No login, token or client secret is used.
 | `error`        | Missing/failed lookup, failed request, invalid JSON or timeout.          |
 | `rate-limited` | HTTP 429; no automatic retry.                                            |
 
-The internal `unknown` state is displayed as **No account found**, with separate
-**Profile: Not found** and **Availability: Not verified** facts. It is a successful
-profile lookup with an unverified claimability result, not a failed lookup.
+The internal `unknown` state is displayed as **Possibly available**, in amber, with
+separate **Profile: Not found** and **Availability: Not verified** facts and a
+visible warning about reserved/held names. This is an unconfirmed fallback, not a
+probability estimate or evidence of claimability. Only a true availability response
+uses the green **Available** state. Errors never enter the fallback.
 The history storage key and state remain compatible with 1.0.0.
+See [the availability investigation](AVAILABILITY.md) for tested approaches.
 
 An availability-field integrity error does not invalidate a separately successful
 user lookup. It prevents available/unavailable classification. Links to Twitch
