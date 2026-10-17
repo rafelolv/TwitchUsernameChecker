@@ -8,11 +8,11 @@ export function normalizeUsername(value) {
 }
 
 export function validateUsername(username) {
-  if (!username) return "Digite o nickname que você quer consultar.";
+  if (!username) return "Enter a username to check.";
   if (!/^[a-z0-9_]+$/.test(username))
-    return "Use apenas letras sem acento, números e underline (_).";
+    return "Use only letters (a–z), numbers and underscores (_).";
   if (username.length < 4 || username.length > 25)
-    return "O nickname precisa ter entre 4 e 25 caracteres.";
+    return "The username must be between 4 and 25 characters.";
   return "";
 }
 
@@ -59,7 +59,7 @@ export async function checkUsername(
   });
   if (response.status === 429)
     return { username, state: "rate-limited", checkedAt: Date.now() };
-  if (!response.ok) throw new Error("Não foi possível consultar a Twitch.");
+  if (!response.ok) throw new Error("Could not query Twitch.");
   const payload = await response.json();
   return { username, state: classifyResponse(payload), checkedAt: Date.now() };
 }

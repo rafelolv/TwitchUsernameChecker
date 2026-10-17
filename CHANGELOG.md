@@ -3,6 +3,18 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## Unreleased — 1.0.1
+
+- Show successful absent-profile lookups as “No account found”, with profile and
+  availability facts displayed separately.
+- Translate the entire interface, validation messages and metadata to English.
+- Require English for all project text in agent and contribution rules.
+
+Limitations:
+
+- Twitch still blocks the availability field with an integrity challenge. A
+  successful absent-profile lookup does not establish that a name can be claimed.
+
 ## 1.0.0 — 2026-10-16
 
 - Add a Portuguese nickname checker with a responsive cream/purple interface.

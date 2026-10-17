@@ -77,6 +77,26 @@ test("integrity challenges and malformed responses never become false availabili
     assert.equal(classifyResponse(payload), "error");
 });
 
+test("reported nonexistent username preserves a successful profile lookup when availability is blocked", async () => {
+  const username = "falsiqdsaadsddsfffdsgdfg";
+  const result = await checkUsername(username, {
+    fetcher: async () =>
+      Response.json({
+        errors: [
+          {
+            message: "failed integrity check",
+            path: ["isUsernameAvailable"],
+            extensions: { code: "IntegrityCheckFailed" },
+          },
+        ],
+        data: { user: null, isUsernameAvailable: null },
+      }),
+  });
+  assert.equal(result.username, username);
+  assert.equal(result.state, "unknown");
+  assert.equal(validateUsername(username), "");
+});
+
 test("handles rate limits, HTTP errors, bad JSON and aborted connections", async () => {
   const limited = await checkUsername("twitch", {
     fetcher: async () => new Response("", { status: 429 }),

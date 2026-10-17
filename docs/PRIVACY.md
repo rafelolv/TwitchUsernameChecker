@@ -10,9 +10,9 @@ Twitch login, passwords, OAuth tokens or cookies.
   in this origin's `localStorage`. This is not encrypted or secret storage.
   Other same-origin scripts can access it; GitHub Pages project paths share the
   `rafelolv.github.io` origin.
-- **Limpar histórico** removes saved history and the in-memory list. It does not
+- **Clear history** removes saved history and the in-memory list. It does not
   clear the current result, clipboard or third-party server logs.
-- **Copiar nickname** writes only the consulted name to the clipboard on request.
+- **Copy username** writes only the consulted name to the clipboard on request.
 - Google Fonts loads typefaces from Google domains, which receive normal request
   metadata. Local fallback fonts work if those requests fail.
 - GitHub Pages receives normal hosting request metadata. External GitHub/Twitch

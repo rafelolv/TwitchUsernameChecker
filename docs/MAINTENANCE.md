@@ -64,5 +64,5 @@ Adapted from [AdBonk](https://github.com/rafelolv/AdBonk/blob/main/AGENTS.md),
 [Wipecord](https://github.com/rafelolv/Wipecord/blob/main/AGENTS.md) and
 [Treco](https://github.com/rafelolv/Treco/blob/main/AGENTS.md): English docs,
 repository-local Git identity, canonical sources, one version source, one check
-command and explicit validation limits. Keep this site's existing Portuguese UI;
-extension and store workflows remain specific to those projects.
+command and explicit validation limits. All project text, including the UI and
+metadata, uses English. Extension and store workflows remain specific to those projects.

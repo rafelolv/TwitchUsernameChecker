@@ -11,50 +11,58 @@ const result = $("#result");
 const storageKey = "tuc:history:v1";
 const states = {
   available: {
-    label: "Disponível",
-    title: "Esse @ pode ser seu.",
+    label: "Available",
+    title: "This name is available right now.",
     description:
-      "A Twitch confirmou que o nome está disponível agora. Confirme no cadastro ou na alteração de nome antes de decidir.",
-    action: "Confirmar na Twitch ↗",
+      "Twitch confirmed availability. Claim it on Twitch before someone else does; this check does not reserve it.",
+    profile: "Not found",
+    availability: "Available",
+    action: "Claim on Twitch ↗",
     url: "https://www.twitch.tv/settings/profile",
   },
   taken: {
-    label: "Em uso",
-    title: "Esse nome já tem dono.",
+    label: "Taken",
+    title: "This username belongs to an account.",
     description:
-      "Encontramos uma conta com esse nickname na Twitch. Você pode abrir o perfil ou testar outra ideia.",
-    action: "Ver perfil na Twitch ↗",
+      "Twitch returned an existing profile. Open it or try another name.",
+    profile: "Found",
+    availability: "Taken",
+    action: "View Twitch profile ↗",
   },
   unavailable: {
-    label: "Indisponível",
-    title: "Sem perfil, mas sem liberação.",
+    label: "Unavailable",
+    title: "No profile, but the name is unavailable.",
     description:
-      "Não encontramos um perfil, mas a Twitch respondeu que o nome não está disponível. Ela não informa o motivo nem quando será liberado.",
-    action: "Conferir na Twitch ↗",
+      "Twitch explicitly marked this name as unavailable. It does not provide a reason or a release date.",
+    profile: "Not found",
+    availability: "Unavailable",
+    action: "Check on Twitch ↗",
     url: "https://www.twitch.tv/settings/profile",
   },
   unknown: {
-    label: "Não confirmado",
-    title: "Sem perfil. E o nome?",
+    label: "No account found",
+    title: "Want to claim it?",
     description:
-      "Nenhum perfil foi encontrado, mas a Twitch não permitiu confirmar se o nome está livre ou indisponível. Confira na edição do nome de usuário ou no cadastro da Twitch.",
-    action: "Confirmar na Twitch ↗",
+      "Check it in Twitch Sign Up or Settings → Profile. A name without a matching account can still be withheld.",
+    profile: "Not found",
+    availability: "Not verified",
+    action: "Check availability on Twitch ↗",
     url: "https://www.twitch.tv/settings/profile",
   },
   error: {
-    label: "Consulta não concluída",
-    title: "Não deu para consultar agora.",
+    label: "Lookup failed",
+    title: "We could not check this name.",
     description:
-      "A Twitch não respondeu como esperado. Confira sua conexão e tente novamente. Não foi possível determinar o status desse nome.",
-    action: "Abrir Twitch ↗",
+      "Twitch did not return a valid profile lookup. Check your connection and try again. No profile or availability result was confirmed.",
+    action: "Open Twitch ↗",
     url: "https://www.twitch.tv/",
   },
   "rate-limited": {
-    label: "Muitas consultas",
-    title: "Uma pausa e a gente tenta de novo.",
+    label: "Too many requests",
+    title: "Give it a moment.",
     description:
-      "A Twitch limitou as consultas por enquanto. Aguarde um minuto antes de tentar novamente.",
-    action: "Abrir Twitch ↗",
+      "Twitch is limiting requests. Wait before trying again; no result was confirmed for this lookup.",
+    action: "Open Twitch ↗",
     url: "https://www.twitch.tv/",
   },
 };
@@ -92,10 +100,10 @@ function renderHistory() {
       const li = element("li");
       const button = element("button");
       button.type = "button";
-      button.title = `${states[item.state].label} na última consulta. Clique para consultar novamente.`;
+      button.title = `${states[item.state].label} at last check. Click to check again.`;
       button.setAttribute(
         "aria-label",
-        `Consultar ${item.username} novamente. Último resultado: ${states[item.state].label}`,
+        `Check ${item.username} again. Previous result: ${states[item.state].label}`,
       );
       const dot = element("i", `dot ${item.state}`);
       dot.setAttribute("aria-hidden", "true");
@@ -145,26 +153,37 @@ function renderResult(item) {
     content.url || `https://www.twitch.tv/${encodeURIComponent(item.username)}`;
   link.target = "_blank";
   link.rel = "noopener noreferrer";
-  const copy = element("button", "", "Copiar nickname");
+  const copy = element("button", "", "Copy username");
   copy.type = "button";
   copy.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(item.username);
-      copy.textContent = "Copiado ✓";
+      copy.textContent = "Copied ✓";
     } catch {
       input.focus();
       input.select();
-      copy.textContent = "Selecione e copie o nome acima";
+      copy.textContent = "Select and copy the name above";
     }
   });
   actions.append(link, copy);
   const time = element(
     "time",
     "result-time",
-    `Consultado às ${new Date(item.checkedAt).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })} · o resultado pode mudar`,
+    `Checked at ${new Date(item.checkedAt).toLocaleTimeString("en", { hour: "2-digit", minute: "2-digit" })} · results can change`,
   );
   time.dateTime = new Date(item.checkedAt).toISOString();
-  result.replaceChildren(heading, title, description, actions, time);
+  const facts = element("dl", "result-facts");
+  if (content.profile) {
+    for (const [label, value] of [
+      ["Profile", content.profile],
+      ["Availability", content.availability],
+    ]) {
+      const row = element("div");
+      row.append(element("dt", "", label), element("dd", "", value));
+      facts.append(row);
+    }
+  }
+  result.replaceChildren(heading, title, facts, description, actions, time);
 }
 
 function syncInput() {
@@ -210,14 +229,14 @@ form.addEventListener("submit", async (event) => {
   input.readOnly = true;
   $("#clear-input").hidden = true;
   $("#submit-button").disabled = true;
-  $("#submit-label").textContent = "Consultando…";
+  $("#submit-label").textContent = "Checking…";
   result.hidden = false;
   result.dataset.state = "loading";
   result.setAttribute("aria-busy", "true");
   const loading = element("div", "result-heading");
   loading.append(
     element("span", "spinner"),
-    document.createTextNode("Consultando a Twitch…"),
+    document.createTextNode("Checking Twitch…"),
   );
   result.replaceChildren(loading);
   const controller = new AbortController();
@@ -232,7 +251,7 @@ form.addEventListener("submit", async (event) => {
     busy = false;
     input.readOnly = false;
     $("#submit-button").disabled = false;
-    $("#submit-label").textContent = "Verificar nome";
+    $("#submit-label").textContent = "Check username";
     $("#clear-input").hidden = !input.value;
     result.setAttribute("aria-busy", "false");
   }

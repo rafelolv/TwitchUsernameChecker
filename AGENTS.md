@@ -5,9 +5,8 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
 
 - Keep this a small static GitHub Pages site. Runtime code has no npm dependencies,
   remote executable code, telemetry or application backend.
-- Use English for documentation, comments, identifiers and commits. Discuss work
-  with the maintainer in Portuguese. The current UI and its metadata intentionally
-  remain Brazilian Portuguese; do not translate them as routine cleanup.
+- Use English for all project documentation, comments, user-facing text, metadata, and commit messages.
+  Discuss work with the maintainer in Portuguese.
 - Maintain `main` and canonical links to `rafelolv/TwitchUsernameChecker` and its
   issues. For requested commits, use repository-local Git identity
   `Rafael <82127878+rafelolv@users.noreply.github.com>`. Preserve history and do not
@@ -22,7 +21,9 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
 - `checker.js` owns requests and classification. Only a successful availability
   boolean with a confirmed absent user permits `available` or `unavailable`.
   Missing profiles, HTTP errors, timeouts and integrity challenges never prove
-  availability. Preserve `unknown`, `error` and `rate-limited` states.
+  availability. Preserve `unknown`, `error` and `rate-limited` states. Show a
+  successful absent-profile lookup as “No account found” with availability separate;
+  do not make a successful profile lookup look like a failed request.
 - Twitch GraphQL is internal and unsupported. Do not bypass integrity checks,
   embed credentials, promise availability or predict name-release dates. A proxy
   alone does not solve the integrity restriction.

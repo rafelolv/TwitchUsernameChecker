@@ -1,7 +1,16 @@
 {
   "name": "twitch-username-checker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
+  "author": "Rafael (rafelolv)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafelolv/TwitchUsernameChecker.git"
+  },
+  "homepage": "https://rafelolv.github.io/TwitchUsernameChecker/",
+  "bugs": {
+    "url": "https://github.com/rafelolv/TwitchUsernameChecker/issues"
+  },
   "private": true,
   "type": "module",
   "scripts": {

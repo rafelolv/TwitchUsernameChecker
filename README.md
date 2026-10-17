@@ -1,6 +1,6 @@
 # Twitch Username Checker
 
-A small, independent Twitch nickname checker with a Brazilian Portuguese
+A small, independent Twitch nickname checker with an English
 interface, a cream/purple identity and local search history. Built with HTML,
 CSS and native JavaScript modules for GitHub Pages. No runtime npm dependencies,
 application backend or login.
@@ -12,13 +12,13 @@ application backend or login.
 | Taken                 | Twitch returned an existing account.                             |
 | Available             | No account and an explicit successful availability response.     |
 | Unavailable           | No account and an explicit successful rejection of availability. |
-| Unconfirmed           | No account, but Twitch did not allow availability confirmation.  |
+| No account found      | Twitch returned no account; availability could not be verified.  |
 | Failed / rate-limited | The lookup failed or Twitch limited requests.                    |
 
 **A missing profile does not mean a free name.** This app uses Twitch's
 unsupported internal GraphQL endpoint. During initial live checks, profile
 lookup worked, but availability returned `IntegrityCheckFailed`. The app shows
-**“Não confirmado”** in that case and links to Twitch for final confirmation.
+**“No account found”**, with **“Availability: Not verified”**, in that case and links to Twitch for final confirmation.
 It does not bypass integrity checks. A proxy alone does not remove that restriction.
 
 Only Twitch registration or username editing can confirm that you can claim a

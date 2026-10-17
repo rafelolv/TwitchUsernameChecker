@@ -8,7 +8,8 @@ For UI/integration changes, include browser scenarios, versions and viewports.
 Separate simulated results from live Twitch queries and state untested cases.
 Never include credentials, private history or raw responses.
 
-Use English for docs, comments and change summaries; preserve the Portuguese UI.
+Use English for all project documentation, comments, user-facing text, metadata,
+and commit messages.
 Record concise user-visible changes in [CHANGELOG.md](CHANGELOG.md).
 Documentation-only changes need no version bump. Keep the site static, accessible
 and independent from the maintainer's other apps.

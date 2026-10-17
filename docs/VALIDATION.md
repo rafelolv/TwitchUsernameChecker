@@ -79,3 +79,29 @@ Limitations:
   versus withheld names. Firefox/Safari, physical devices, screen readers and
   signed-in Twitch registration/rename remain untested. The release tag and its
   assets remain unchanged.
+
+## 1.0.1 profile-result clarity and English interface — 2026-10-16
+
+- Reproduced the reported `falsiqdsaadsddsfffdsgdfg` lookup against Twitch:
+  `user: null`, `isUsernameAvailable: null`, and an availability-field
+  `IntegrityCheckFailed` response. The profile lookup succeeded; availability
+  remained unverified.
+- The internal `unknown` state now displays “No account found”, with separate
+  “Profile: Not found” and “Availability: Not verified” facts. Failed lookups do
+  not display a successful absent-profile fact. The existing history key/schema
+  remains compatible with 1.0.0.
+- Translated page copy, metadata, validation, timestamps, history, actions and
+  accessibility labels to English. Updated project rules to require English for
+  all documentation, comments, user-facing text, metadata and commit messages.
+- Six unit cases and syntax checks passed, including a regression using the
+  reported username and actual response shape.
+- Chrome 154.0.8037.97, headless Linux, temporary context: local simulated tests
+  covered all six result states, separate facts, English validation, Enter submit,
+  old saved history, fresh queries, clearing and 320/375/768/1440px viewports.
+  No JavaScript errors or horizontal overflow were observed. Desktop/mobile
+  screenshots were inspected visually.
+- Separate local live queries returned “No account found” for the reported name
+  and “Taken” for `twitch`. Actual claimability was not confirmed; registration,
+  signed-in renaming, Firefox/Safari and physical devices remain untested.
+- Deployment of this patch and hosted verification are pending. The published
+  v1.0.0 tag and assets are unchanged.
