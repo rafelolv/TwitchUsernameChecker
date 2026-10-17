@@ -1,127 +1,57 @@
 <p align="center">
-  <img src="assets/logo.svg" width="88" height="88" alt="Twitch Username Checker nameplate logo" />
+  <img src="assets/logo.svg" width="88" height="88" alt="Twitch Username Checker logo" />
 </p>
 
 # Twitch Username Checker
 
-A small, independent Twitch nickname checker with an English
-interface and a cream/purple identity. Built with HTML,
-CSS and native JavaScript modules for GitHub Pages. No runtime npm dependencies,
-application backend or login.
+Check a name before changing your Twitch username.
 
-[**Open the checker ↗**](https://rafelolv.github.io/TwitchUsernameChecker/)
+[**Open the checker**](https://rafelolv.github.io/TwitchUsernameChecker/)
 
-![Twitch Username Checker interface](docs/images/preview.png)
+![Twitch Username Checker](docs/images/preview.png)
 
-Results use two labels, **Available** and **Unavailable**, with no colored status
-panels or dots. Request errors remain separate.
+## How to use it
 
-The custom nameplate mark combines a folded corner, username brackets and a mint
-check. One vector is used across the site, favicon and this README. See
-[branding](docs/BRANDING.md) for the source and palette.
+Enter a username and click **Check username**, or press Enter.
+Use 4–25 letters, numbers or underscores.
 
-## Using the checker
+- **Available:** no public account was found, or Twitch confirmed the name is free.
+- **Unavailable:** an account already uses the name, or Twitch says it can't be used.
 
-Enter a username and press **Check username** or Enter. The input caps typing and
-pasting at 25 characters, with a live counter. Names must have 4–25 letters,
-numbers or underscores. Searches are not saved.
+**Available doesn't always mean you can use it.** Twitch can hold names after a
+rename, suspension or account deactivation. If the result says **Not confirmed by
+Twitch**, we couldn't check whether the name is held.
 
-## What it can confirm
+Before choosing a name, sign in to Twitch and try it in
+[Settings → Profile](https://www.twitch.tv/settings/profile).
+This tool doesn't reserve names or tell you when they'll be released.
 
-| Result                              | Meaning                                                          |
-| ----------------------------------- | ---------------------------------------------------------------- |
-| Unavailable · In use                | Twitch returned an existing account.                             |
-| Available · Not confirmed by Twitch | No public profile found; the name may still be reserved or held. |
-| Available · Confirmed by Twitch     | Twitch explicitly confirmed availability.                        |
-| Unavailable                         | Twitch explicitly rejected availability.                         |
-| Failed / rate-limited               | The lookup failed or Twitch limited requests.                    |
+You don't need to sign in here, and searches aren't saved. The name you enter is
+sent to Twitch when you run a check. See [privacy details](docs/PRIVACY.md).
 
-**“Available” based on an absent profile is a best-effort label, not a guarantee.**
-It appears as a plain result with **“Not confirmed by Twitch”** and a visible warning.
-Some names cannot be used after a rename, suspension or deactivation even when
-no profile is visible. Twitch does not provide a precise public claimability
-check. Confirm the name on Twitch before choosing it.
+## Found a problem?
 
-The **“Confirmed by Twitch”** field requires an actual positive
-availability response. The internal GraphQL endpoint is unsupported and may block
-that check with `IntegrityCheckFailed`. Failed requests are never labeled available.
-
-To confirm a name, sign in to Twitch and try it in
-[Settings → Profile](https://www.twitch.tv/settings/profile). Availability can change; this tool does not reserve names or predict release
-dates. See [architecture](docs/ARCHITECTURE.md) and
-[actual validation results](docs/VALIDATION.md).
-The [availability investigation](docs/AVAILABILITY.md) compares the methods tested
-with user-reported held and free names and explains why they can share a result.
+[Open an issue](https://github.com/rafelolv/TwitchUsernameChecker/issues) with your
+browser and what went wrong. Please leave out passwords, tokens and account details.
 
 ## Run locally
 
-Use Node.js 24 (`.nvmrc`) for checks and Python 3 for the local server. There are
-no dependencies to install and no build step.
+You'll need Node.js 24 and Python 3. There are no dependencies to install.
 
 ```sh
 npm run dev
 ```
 
-Open `http://127.0.0.1:5173`. Serve over HTTP; browser modules do not work through
-`file://`.
+Open http://127.0.0.1:5173. To run the checks, use another terminal:
 
 ```sh
 npm run check
 ```
 
-This checks JavaScript syntax and runs all unit tests. `npm test` runs tests only.
-Tests use simulated network responses; they do not prove live Twitch compatibility.
-
-## Deploy to GitHub Pages
-
-GitHub Pages supports this static site on GitHub Free when the repository is
-public. No paid domain or application server is required. See
-[GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
-
-1. Push the files to `main` in `rafelolv/TwitchUsernameChecker`.
-2. Choose **Settings → Pages → Build and deployment → Source → GitHub Actions**.
-3. Run **Validate and publish GitHub Pages**, or push another change to `main`.
-4. Verify the workflow's deployment result and URL.
-
-Expected URL after successful deployment:
-`https://rafelolv.github.io/TwitchUsernameChecker/`.
-
-Pull requests validate only. Main pushes and manual runs on main deploy after
-checks pass. Only runtime files are uploaded; asset paths are relative so the
-site works under the repository subpath. A future rename should update canonical
-links and documented URLs. Authorized version tags publish validated release ZIPs
-and checksums through a separate workflow; no store publishing is configured.
-
-## Privacy
-
-Nicknames are sent directly to Twitch on explicit submission. Searches are not
-saved. Old history from previous versions is removed when the page loads.
-Fonts load from Google Fonts, with local fallbacks. There is no application telemetry.
-
-See [privacy and external requests](docs/PRIVACY.md) for hosting, storage and
-clipboard details. Do not put credentials or private history into issue reports.
-
-## Project guides
-
-- [Agent rules](AGENTS.md) and [contributing](CONTRIBUTING.md).
-- [Maintenance, versions and deployment](docs/MAINTENANCE.md).
-- [Architecture and classification rules](docs/ARCHITECTURE.md).
-- [Validation and known limits](docs/VALIDATION.md).
-- [Changelog](CHANGELOG.md).
-- [Report a problem](https://github.com/rafelolv/TwitchUsernameChecker/issues).
-
-Maintenance conventions are adapted from rafelolv's AdBonk, Wipecord and Treco;
-their runtime code, branding and extension/store workflows are separate.
-
-Twitch references: [official Get Users API](https://dev.twitch.tv/docs/api/reference/#get-users),
-[account creation](https://help.twitch.tv/s/article/creating-an-account-with-twitch?language=en_US)
-and [username policy](https://help.twitch.tv/s/article/username-rename-and-recycling-policies?language=en_US).
+For changes to the project, see [Contributing](CONTRIBUTING.md),
+[Maintenance](docs/MAINTENANCE.md) and [how the checks work](docs/AVAILABILITY.md).
 
 ## License
 
-[MIT](LICENSE) — Copyright (c) 2026 Rafael (rafelolv). Use, modification,
-redistribution and commercial use are permitted under the license's terms,
-including preservation of the copyright and permission notices.
-
-Maintained by [rafelolv](https://github.com/rafelolv). Independent project, not
-affiliated with Twitch.
+[MIT](LICENSE) · Made by [rafelolv](https://github.com/rafelolv).
+Independent project, not affiliated with Twitch.
