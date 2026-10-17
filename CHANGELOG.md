@@ -3,6 +3,10 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.3.1
+
+- Align the list label and limit together, add an expand arrow and remove excess collapsed spacing.
+
 ## 1.3.0
 
 - Add an optional list check for up to 100 names, with sequential results and a stop button.

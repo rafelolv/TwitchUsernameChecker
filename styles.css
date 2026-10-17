@@ -662,6 +662,26 @@ details a {
 .list-checker summary {
   color: var(--purple);
   font-size: 13px;
+  padding-block: 16px;
+  gap: 12px;
+}
+.list-checker summary .list-summary-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font: inherit;
+  color: inherit;
+  transform: none;
+}
+.list-chevron {
+  flex-shrink: 0;
+}
+.list-checker[open] .list-chevron {
+  transform: rotate(180deg);
+}
+.list-checker:not([open]) + .card-note {
+  margin-top: 0;
 }
 .list-checker summary .list-limit {
   color: var(--muted);

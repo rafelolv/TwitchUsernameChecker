@@ -296,3 +296,13 @@ Limitations:
   No live 100-name scan was run. Twitch may limit or refuse subsequent requests;
   the queue stops and leaves remaining names unchecked. Hosted deployment is a
   separate check after pushing.
+
+
+## 1.3.1 list disclosure spacing — 2026-10-17
+
+- `npm run check` passes. Temporary Chrome profile: verified keyboard expansion
+  and collapse, aligned label/limit, the collapsed row's compact spacing, and no
+  horizontal overflow at 320px in light and dark themes. Inspected the screenshot
+  and refreshed both README previews.
+- Lookup responses were mocked for the preview; request behavior is unchanged.
+  No new live Twitch checks were needed for this layout change.
