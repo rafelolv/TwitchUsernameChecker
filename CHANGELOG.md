@@ -3,6 +3,10 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.3.4
+
+- Remove the extra footer divider and tighten the space below the FAQ.
+
 ## 1.3.3
 
 - Remove the sign-in question from the FAQ.

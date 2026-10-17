@@ -339,3 +339,12 @@ Limitations:
   two FAQ entries remain, and both themes fit at 320px without horizontal overflow.
   Refreshed the README previews. Preview lookup responses were mocked; no request
   behavior changed and no live Twitch checks were needed.
+
+
+## 1.3.4 footer spacing — 2026-10-17
+
+- `npm run check` passes. Temporary Chrome profile: verified the footer has no
+  top border or extra top margin, both themes render correctly, and the page
+  fits at 320px. Inspected the dark preview and refreshed both README screenshots.
+- Preview lookup responses were mocked. Request behavior did not change; no
+  new live Twitch checks were needed.
