@@ -187,6 +187,7 @@ function renderResult(item) {
 }
 
 function syncInput() {
+  $("#character-count").textContent = `${input.value.length} / 25`;
   $("#clear-input").hidden = !input.value || busy;
   input.removeAttribute("aria-invalid");
   $("#input-error").hidden = true;

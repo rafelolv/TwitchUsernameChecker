@@ -1,9 +1,28 @@
+<p align="center">
+  <img src="assets/logo.svg" width="88" height="88" alt="Twitch Username Checker nameplate logo" />
+</p>
+
 # Twitch Username Checker
 
 A small, independent Twitch nickname checker with an English
 interface, a cream/purple identity and local search history. Built with HTML,
 CSS and native JavaScript modules for GitHub Pages. No runtime npm dependencies,
 application backend or login.
+
+[**Open the checker ↗**](https://rafelolv.github.io/TwitchUsernameChecker/)
+
+![Twitch Username Checker interface](docs/images/preview.png)
+
+The custom nameplate mark combines a folded corner, username brackets and a mint
+check. One vector is used across the site, favicon and this README. See
+[branding](docs/BRANDING.md) for the source and palette.
+
+## Using the checker
+
+Enter a username and press **Check username** or Enter. The input caps typing and
+pasting at 25 characters, with a live counter. Names must have 4–25 letters,
+numbers or underscores. Recent searches stay in this browser and are checked
+again when selected.
 
 ## What it can confirm
 

@@ -80,27 +80,10 @@ button[hidden],
   color: var(--purple);
 }
 .brand-mark {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  background: var(--purple);
-  color: var(--paper);
-  border-radius: 12px;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 35px;
-  line-height: 1;
-}
-.brand-mark span {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  right: -3px;
-  bottom: -3px;
-  background: #c3e6ad;
-  border: 3px solid var(--paper);
-  border-radius: 3px;
+  display: block;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
 }
 .source-link {
   font-size: 12px;
@@ -282,11 +265,18 @@ input::placeholder {
 .input-meta p {
   margin: 0;
 }
+.character-count {
+  margin-left: auto;
+  padding-left: 10px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 .enter-hint {
   display: flex;
   align-items: center;
   gap: 5px;
   font-size: 9px;
+  margin-left: 12px;
 }
 kbd {
   font:

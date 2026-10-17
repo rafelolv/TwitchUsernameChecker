@@ -18,6 +18,11 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
 - Preserve the cream/purple identity, one primary search, restrained decoration,
   explicit labels, keyboard access, visible focus, live result announcements,
   reduced motion and narrow layouts. Keep shared colors in CSS variables.
+- `assets/logo.svg` is the canonical nameplate mark for the header, favicon and
+  README. Preserve its cut corner, brackets and mint check; do not maintain
+  independently drawn copies or replace it with a generic character/tile.
+- The username input must enforce its native 25-character maximum while typing
+  and pasting. Keep the counter synchronized and retain request-side validation.
 - `checker.js` owns requests and classification. Only a successful availability
   boolean with a confirmed absent user permits `available` or `unavailable`.
   Missing profiles, HTTP errors, timeouts and integrity challenges never prove

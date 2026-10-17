@@ -113,3 +113,20 @@ Limitations:
   Taken”. No JS errors or horizontal overflow were observed.
 - Version 1.0.1 is deployed to Pages. The published v1.0.0 GitHub release tag and
   downloadable assets remain unchanged; this patch did not create a new tag.
+
+## 1.0.2 branding and input limits
+
+- Replaced the generic @ tile with the canonical `assets/logo.svg` nameplate
+  mark shared by the header, favicon and README. Added branding guidance and an
+  actual interface capture at `docs/images/preview.png`.
+- Added the input's native 25-character maximum and a synchronized visible counter.
+  Request-side length validation is unchanged.
+- `npm run check` passed. Chrome 154.0.8037.97, headless Linux, disposable context:
+  typing 30 characters and actual clipboard pasting beyond the limit both stopped
+  at 25. Delete/retype, clear and selecting a saved 25-character name updated the
+  counter correctly. Simulated lookup and logo/favicon loading passed.
+- Viewports 320/375/768/1120px had no horizontal overflow or JS errors. Desktop
+  and mobile screenshots were inspected. Tests use temporary browser automation
+  outside the repository; the production app still has no npm dependencies.
+- No new live Twitch availability test was required; the integration and existing
+  availability restriction are unchanged. Deployment verification is pending.

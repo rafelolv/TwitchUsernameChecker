@@ -9,15 +9,22 @@
       content="Check Twitch usernames. See whether an account exists and keep profile lookup separate from name availability."
     />
     <title>Twitch Username Checker — Find your next @</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <script type="module" src="app.js"></script>
   </head>
   <body>
     <header class="site-header wrap">
       <a class="brand" href="./" aria-label="Twitch Username Checker, home"
-        ><span class="brand-mark" aria-hidden="true">@<span></span></span
-        ><span
+        ><img
+          class="brand-mark"
+          src="assets/logo.svg"
+          alt=""
+          width="52"
+          height="52"
+          aria-hidden="true"
+        />
+        <span
           >Twitch Username<br /><strong>Checker</strong
           ><span class="brand-period">.</span></span
         ></a
@@ -53,6 +60,7 @@
                 id="username"
                 name="username"
                 type="text"
+                maxlength="25"
                 placeholder="yourusername"
                 autocomplete="off"
                 autocapitalize="none"
@@ -76,6 +84,12 @@
           </div>
           <div class="input-meta">
             <p id="input-help">4–25 characters · letters, numbers and _</p>
+            <span
+              id="character-count"
+              class="character-count"
+              aria-hidden="true"
+              >0 / 25</span
+            >
             <span class="enter-hint" aria-hidden="true"
               >or press <kbd>Enter ↵</kbd></span
             >
