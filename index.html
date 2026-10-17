@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#452480" />
     <meta
       name="description"
-      content="Check Twitch usernames. See whether an account exists and keep profile lookup separate from name availability."
+      content="Check a Twitch username, see if an account exists, and find out what Twitch says about its availability."
     />
     <title>Twitch Username Checker — Find your next @</title>
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
@@ -39,11 +39,10 @@
     </header>
     <main class="wrap">
       <section class="hero" aria-labelledby="hero-title">
-        <p class="eyebrow"><span></span> LESS GUESSWORK. MORE YOU.</p>
+        <p class="eyebrow"><span></span> TWITCH USERNAMES</p>
         <h1 id="hero-title">Found a name?<br /><span>Let's check it.</span></h1>
         <p class="intro">
-          Your next channel starts with an @.<br />Look up the username you have
-          in mind.
+          See if there's a Twitch account using the name you want.
         </p>
       </section>
       <section class="checker" aria-label="Check a username">
@@ -52,7 +51,7 @@
           ><span class="card-index" aria-hidden="true">01 / @</span>
         </div>
         <form id="check-form" novalidate>
-          <label for="username">What will your name be?</label>
+          <label for="username">Username</label>
           <div class="search-row">
             <div class="input-wrap">
               <span class="input-prefix" aria-hidden="true">twitch.tv/</span
@@ -107,10 +106,10 @@
         <div class="card-note">
           <span aria-hidden="true">ⓘ</span>
           <p>
-            We check profiles and name availability separately.<br
+            No profile doesn't always mean the name is free.<br
               class="desktop-break"
             />
-            A missing account does not guarantee you can claim the name.
+            Check on Twitch before you choose.
           </p>
         </div>
       </section>
@@ -133,42 +132,38 @@
       </section>
       <section class="explainer" aria-labelledby="explainer-title">
         <div class="section-heading">
-          <h2 id="explainer-title">Know what each result means.</h2>
+          <h2 id="explainer-title">What the results mean</h2>
           <span aria-hidden="true">↓</span>
         </div>
         <div class="status-guide">
           <article>
             <span class="status-name"><i class="dot taken"></i>Taken</span>
-            <p>Twitch returned an account with this username.</p>
+            <p>Someone's using this username.</p>
           </article>
           <article>
             <span class="status-name"
               ><i class="dot unknown"></i>No account found</span
             >
             <p>
-              No matching account. Availability still needs confirmation on
-              Twitch.
+              We didn't find a profile. Check on Twitch to see if you can use
+              the name.
             </p>
           </article>
           <article>
             <span class="status-name"
               ><i class="dot available"></i>Available</span
             >
-            <p>Twitch explicitly confirmed the name is available right now.</p>
+            <p>Twitch says the name is free right now.</p>
           </article>
           <article>
             <span class="status-name"
               ><i class="dot unavailable"></i>Unavailable</span
             >
-            <p>
-              No account found, but Twitch explicitly marked the name
-              unavailable.
-            </p>
+            <p>There's no profile, but Twitch says the name isn't available.</p>
           </article>
         </div>
         <p class="unknown-note">
-          If the availability check is blocked, we still show the successful
-          profile result.
+          We only call a name available when Twitch confirms it.
         </p>
       </section>
       <section class="questions" aria-label="Frequently asked questions">
@@ -180,11 +175,9 @@
             >
           </summary>
           <p>
-            Profile lookup and name availability are separate checks. A
-            successful lookup can return no account while Twitch blocks the
-            availability check. In that case, we show “No account found” and
-            “Availability: Not verified”. Only an explicit availability response
-            lets us mark a name available.
+            A name can have no visible profile and still be unavailable. If
+            Twitch doesn't confirm whether you can use it, we'll show “No
+            account found” and leave availability as “Not verified”.
           </p>
         </details>
         <details>
@@ -192,15 +185,15 @@
             How do I confirm I can use a name?<span aria-hidden="true">+</span>
           </summary>
           <p>
-            Check it in Twitch Sign Up, or go to Settings → Profile to edit your
-            username if you already have an account. A name without a visible
-            profile may still be withheld or restricted. See
+            Try the name when signing up for Twitch, or in Settings → Profile if
+            you already have an account. Some names are held back even without a
+            visible profile. Read
             <a
               href="https://help.twitch.tv/s/article/username-rename-and-recycling-policies?language=en_US"
               target="_blank"
               rel="noopener noreferrer"
               >Twitch's username policy ↗</a
-            >. Availability can change before you claim it.
+            >. A name can be taken between checking and signing up.
           </p>
         </details>
         <details>
@@ -208,15 +201,14 @@
             Do I need to sign in here?<span aria-hidden="true">+</span>
           </summary>
           <p>
-            No. This tool does not ask for your password or account access. The
-            username is sent directly to Twitch. Recent searches stay in this
-            browser and can be cleared at any time.
+            No login or password needed. We send the username to Twitch to check
+            it. Your recent searches stay in this browser; use Clear history to
+            remove them.
           </p>
         </details>
       </section>
     </main>
     <footer class="site-footer wrap">
-      <p>A good name is just the start<span class="brand-period">.</span></p>
       <div>
         <span>Independent project. Not affiliated with Twitch.</span
         ><a

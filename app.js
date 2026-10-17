@@ -12,28 +12,27 @@ const storageKey = "tuc:history:v1";
 const states = {
   available: {
     label: "Available",
-    title: "This name is available right now.",
+    title: "This name is free right now.",
     description:
-      "Twitch confirmed availability. Claim it on Twitch before someone else does; this check does not reserve it.",
+      "Try it in Twitch's sign-up form or your profile settings. This check doesn't reserve the name.",
     profile: "Not found",
     availability: "Available",
-    action: "Claim on Twitch ↗",
+    action: "Use on Twitch ↗",
     url: "https://www.twitch.tv/settings/profile",
   },
   taken: {
     label: "Taken",
-    title: "This username belongs to an account.",
-    description:
-      "Twitch returned an existing profile. Open it or try another name.",
+    title: "Someone's already using this name.",
+    description: "Take a look at the profile, or try a different username.",
     profile: "Found",
     availability: "Taken",
     action: "View Twitch profile ↗",
   },
   unavailable: {
     label: "Unavailable",
-    title: "No profile, but the name is unavailable.",
+    title: "Twitch hasn't made this name available.",
     description:
-      "Twitch explicitly marked this name as unavailable. It does not provide a reason or a release date.",
+      "We couldn't find a profile, but Twitch says you can't use this name. Twitch doesn't say why or when that might change.",
     profile: "Not found",
     availability: "Unavailable",
     action: "Check on Twitch ↗",
@@ -41,9 +40,9 @@ const states = {
   },
   unknown: {
     label: "No account found",
-    title: "Want to claim it?",
+    title: "Thinking of using it?",
     description:
-      "Check it in Twitch Sign Up or Settings → Profile. A name without a matching account can still be withheld.",
+      "Try it in Twitch's sign-up form or under Settings → Profile. Twitch hasn't confirmed whether this name is free.",
     profile: "Not found",
     availability: "Not verified",
     action: "Check availability on Twitch ↗",
@@ -51,17 +50,17 @@ const states = {
   },
   error: {
     label: "Lookup failed",
-    title: "We could not check this name.",
+    title: "Couldn't finish the check.",
     description:
-      "Twitch did not return a valid profile lookup. Check your connection and try again. No profile or availability result was confirmed.",
+      "Something went wrong while checking Twitch. Give it another try.",
     action: "Open Twitch ↗",
     url: "https://www.twitch.tv/",
   },
   "rate-limited": {
     label: "Too many requests",
-    title: "Give it a moment.",
+    title: "Try again in a bit.",
     description:
-      "Twitch is limiting requests. Wait before trying again; no result was confirmed for this lookup.",
+      "Twitch is limiting requests right now. Wait a little, then check again.",
     action: "Open Twitch ↗",
     url: "https://www.twitch.tv/",
   },
@@ -100,7 +99,7 @@ function renderHistory() {
       const li = element("li");
       const button = element("button");
       button.type = "button";
-      button.title = `${states[item.state].label} at last check. Click to check again.`;
+      button.title = `Last result: ${states[item.state].label}. Check again.`;
       button.setAttribute(
         "aria-label",
         `Check ${item.username} again. Previous result: ${states[item.state].label}`,

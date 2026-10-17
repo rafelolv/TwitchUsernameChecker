@@ -138,3 +138,12 @@ Limitations:
 - No new live Twitch availability test was required; the integration and existing
   availability restriction are unchanged. Published release tags/assets remain
   intact; version 1.0.2 is deployed to Pages without creating a new tag.
+
+## 1.0.3 English copy edit
+
+- Replaced promotional slogans and urgency with short, conversational page,
+  help and result text. Added the tone guideline to AGENTS.md and refreshed the
+  README interface capture. Classification and request behavior are unchanged.
+- Syntax/unit checks passed. One local Chrome smoke check covered the revised
+  page, an absent-profile result, a 320px viewport and no JavaScript errors.
+- No new live Twitch or full browser matrix was run for this copy-only change.

@@ -7,6 +7,8 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
   remote executable code, telemetry or application backend.
 - Use English for all project documentation, comments, user-facing text, metadata, and commit messages.
   Discuss work with the maintainer in Portuguese.
+- Write natural, friendly English. Use short, practical messages; avoid marketing
+  slogans, artificial urgency, unnecessary jargon and forced slang.
 - Maintain `main` and canonical links to `rafelolv/TwitchUsernameChecker` and its
   issues. For requested commits, use repository-local Git identity
   `Rafael <82127878+rafelolv@users.noreply.github.com>`. Preserve history and do not

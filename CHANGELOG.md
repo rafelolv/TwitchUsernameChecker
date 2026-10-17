@@ -3,6 +3,11 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.0.3
+
+- Simplify page and result copy with more natural English, shorter help text and
+  no promotional slogans or urgency. Username checks and status rules are unchanged.
+
 ## 1.0.2
 
 - Replace the generic @ tile with a custom nameplate mark shared by the header,
