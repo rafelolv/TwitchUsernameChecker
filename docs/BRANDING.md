@@ -15,7 +15,8 @@ The SVG follows the viewer's light/dark preference. Light uses deep purple
 Check the shape at 16px as well as the header's 52px size.
 
 The website keeps its cream/purple light palette and plum/lavender dark palette.
-It follows `prefers-color-scheme` without a saved preference. Available results
+It follows the device preference initially; the header theme button can override
+and remember that choice. Keep the search card flat, without a drop shadow. Available results
 use green and Unavailable uses red, with uniform borders and no side stripe.
 
 The README uses `docs/images/preview.png` and `docs/images/preview-dark.png` for

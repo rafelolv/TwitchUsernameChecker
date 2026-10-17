@@ -4,16 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <meta
-      name="theme-color"
-      content="#f7f6f2"
-      media="(prefers-color-scheme: light)"
-    />
-    <meta
-      name="theme-color"
-      content="#141118"
-      media="(prefers-color-scheme: dark)"
-    />
+    <meta id="browser-theme-color" name="theme-color" content="#f7f6f2" />
     <meta
       name="description"
       content="Check a Twitch username, see if an account exists, and find out what Twitch says about its availability."
@@ -24,6 +15,7 @@
       href="assets/logo.svg?mark=at-check"
       type="image/svg+xml"
     />
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <script type="module" src="app.js"></script>
   </head>
@@ -43,13 +35,56 @@
           ><span class="brand-period">.</span></span
         ></a
       >
-      <a
-        class="source-link"
-        href="https://github.com/rafelolv/TwitchUsernameChecker"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Open source <span aria-hidden="true">↗</span></a
-      >
+      <div class="header-actions">
+        <a
+          class="source-link"
+          href="https://github.com/rafelolv/TwitchUsernameChecker"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Open source <span aria-hidden="true">↗</span></a
+        >
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="Switch color theme"
+          hidden
+        >
+          <svg
+            id="theme-sun"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+            />
+          </svg>
+          <svg
+            id="theme-moon"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+            hidden
+          >
+            <path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" />
+          </svg>
+        </button>
+      </div>
     </header>
     <main class="wrap">
       <section class="hero" aria-labelledby="hero-title">

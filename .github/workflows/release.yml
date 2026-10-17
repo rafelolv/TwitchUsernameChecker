@@ -34,7 +34,7 @@ jobs:
           output = Path('dist')
           output.mkdir()
           archive = output / f'TwitchUsernameChecker-v{version}.zip'
-          files = [Path(name) for name in ['index.html', 'styles.css', 'app.js', 'checker.js', 'LICENSE']]
+          files = [Path(name) for name in ['index.html', 'styles.css', 'app.js', 'checker.js', 'theme.js', 'LICENSE']]
           files += [path for path in Path('assets').rglob('*') if path.is_file()]
           with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED) as package:
               for path in sorted(files):

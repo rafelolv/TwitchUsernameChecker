@@ -3,15 +3,16 @@
 Static HTML, CSS and native browser modules. No application backend, build tool
 or runtime npm dependency.
 
-| File                          | Responsibility                                                 |
-| ----------------------------- | -------------------------------------------------------------- |
-| `index.html`                  | Structure, English copy, labels and help.                      |
-| `styles.css`                  | Responsive layout, palette, focus and motion rules.            |
-| `app.js`                      | Form lifecycle, results, clipboard and legacy-history cleanup. |
-| `checker.js`                  | Normalization, validation, Twitch request and classification.  |
-| `assets/logo.svg`             | Canonical @/check mark used by the header, favicon and README. |
-| `tests/checker.test.js`       | Network-independent request/classification tests.              |
-| `.github/workflows/pages.yml` | Validation and main-only deployment.                           |
+| File                          | Responsibility                                                  |
+| ----------------------------- | --------------------------------------------------------------- |
+| `index.html`                  | Structure, English copy, labels and help.                       |
+| `theme.js`                    | Early theme selection, system preference and the header toggle. |
+| `styles.css`                  | Responsive layout, palette, focus and motion rules.             |
+| `app.js`                      | Form lifecycle, results, clipboard and legacy-history cleanup.  |
+| `checker.js`                  | Normalization, validation, Twitch request and classification.   |
+| `assets/logo.svg`             | Canonical @/check mark used by the header, favicon and README.  |
+| `tests/checker.test.js`       | Network-independent request/classification tests.               |
+| `.github/workflows/pages.yml` | Validation and main-only deployment.                            |
 
 Submission trims a leading `@`, lowercases and validates the name before access.
 The input uses native `maxlength="25"` to cap typing/pasting and a visible
@@ -59,13 +60,16 @@ Searches are not persisted and there is no recent-search UI. On load, `app.js`
 removes the legacy `tuc:history:v1` key without reading saved values. Storage
 exceptions are ignored; the checker does not depend on storage.
 
-Deployment copies HTML, CSS, both JS modules and `assets/` into `dist/`, plus
+Deployment copies HTML, CSS, the runtime JS files and `assets/` into `dist/`, plus
 `.nojekyll` and `LICENSE`. Docs, tests and development metadata are excluded. Runtime source
 is not generated. `package.json` owns the public version.
 
 ## Theme
 
-CSS `prefers-color-scheme` follows the browser/system light or dark preference
-without JavaScript, storage or reloads. Shared variables own surfaces, typography,
-focus, primary controls and result colors. HTML color-scheme and media-specific
-theme-color metadata cover native controls and browser chrome.
+`theme.js` runs before the stylesheet. It applies a validated `tuc:theme` choice
+(light/dark), or follows `prefers-color-scheme` when no choice is saved. The header
+sun/moon button changes the theme and remembers the override. Blocked storage
+falls back to memory. System changes apply automatically until a manual override.
+CSS variables use the root `data-theme`; no reload is needed. The early script
+also updates browser theme-color, while color-scheme styles native controls and
+the shared SVG logo. Include `theme.js` in Pages and release packages.

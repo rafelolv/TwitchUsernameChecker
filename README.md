@@ -30,7 +30,7 @@
 
 Enter a username and click **Check username**, or press Enter.
 Use 4–25 letters, numbers or underscores. The site follows your browser’s light
-or dark theme.
+or dark theme. Use the sun/moon button at the top to switch; it remembers your choice.
 
 | Result          | What it means                                                      |
 | --------------- | ------------------------------------------------------------------ |

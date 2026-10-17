@@ -3,6 +3,11 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.2.0
+
+- Add a header button to switch between light and dark themes and remember the choice.
+- Remove the offset shadow from the search card.
+
 ## 1.1.1
 
 - Replace the document-style icon with a custom @ whose tail forms a check,

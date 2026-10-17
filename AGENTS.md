@@ -21,8 +21,10 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
   explicit labels, keyboard access, visible focus, live result announcements,
   reduced motion and narrow layouts. Keep shared colors in CSS variables.
 - Follow the browser/system theme with `prefers-color-scheme`. Keep both themes
-  readable, including result warnings, input focus and error states. No theme
-  preference is stored; theme changes must apply without a reload.
+  readable, including result warnings, input focus and error states. The header
+  toggle can override the system theme; store only light/dark under `tuc:theme`.
+  Apply the theme before styles paint and keep changes reload-free. The search
+  card has no decorative drop shadow.
 - `assets/logo.svg` is the canonical custom @/check mark for the header, favicon and
   README. Preserve the drawn @ spiral and its green check-shaped tail; do not
   maintain independently drawn copies or replace it with a font character/tile.

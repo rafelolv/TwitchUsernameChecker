@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --paper: #f7f6f2;
   --ink: #27232d;
   --muted: #655e6d;
@@ -17,7 +17,7 @@
   --unavailable-line: #e39b9b;
   --surface: #fff;
   --card-border: #452480;
-  --card-shadow: #e3dbea;
+
   --input-bg: #fcfbfd;
   --input-line: #ccc6d4;
   --subtle: #766980;
@@ -106,6 +106,27 @@ button[hidden],
   height: 52px;
   flex-shrink: 0;
 }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: transparent;
+}
+.theme-toggle:hover {
+  color: var(--purple);
+  border-color: var(--purple);
+}
 .source-link {
   font-size: 12px;
   text-decoration: none;
@@ -145,7 +166,7 @@ h1 > span {
   border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 25px 30px 0;
-  box-shadow: 5px 5px 0 var(--card-shadow);
+
   margin: 0 30px;
 }
 .card-heading {
@@ -482,40 +503,38 @@ details a {
 .site-footer a {
   text-decoration: none;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --paper: #141118;
-    --ink: #f1edf5;
-    --muted: #b4a8be;
-    --purple: #bf9df2;
-    --purple-light: #30243f;
-    --line: #3e3548;
-    --red: #e68b9d;
-    --surface: #1e1925;
-    --card-border: #58416f;
-    --card-shadow: #2c2238;
-    --input-bg: #17131d;
-    --input-line: #5b4e68;
-    --subtle: #baabc9;
-    --button-bg: #b18ae8;
-    --button-ink: #17111f;
-    --button-hover: #c3a1f0;
-    --focus: #c5a1ff;
-    --focus-ring: #c2a1ff24;
-    --error-ink: #ff9cab;
-    --available-bg: #163b2a;
-    --available-ink: #8ce3af;
-    --available-line: #347b54;
-    --unavailable-bg: #421f2a;
-    --unavailable-ink: #ffadba;
-    --unavailable-line: #945063;
-    --result-neutral-bg: #28222e;
-    --result-neutral-ink: #d3c6df;
-    --result-body: #e0d7e6;
-    --result-warning: #cbbecf;
-    --spinner-line: #67527e;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #141118;
+  --ink: #f1edf5;
+  --muted: #b4a8be;
+  --purple: #bf9df2;
+  --purple-light: #30243f;
+  --line: #3e3548;
+  --red: #e68b9d;
+  --surface: #1e1925;
+  --card-border: #58416f;
+
+  --input-bg: #17131d;
+  --input-line: #5b4e68;
+  --subtle: #baabc9;
+  --button-bg: #b18ae8;
+  --button-ink: #17111f;
+  --button-hover: #c3a1f0;
+  --focus: #c5a1ff;
+  --focus-ring: #c2a1ff24;
+  --error-ink: #ff9cab;
+  --available-bg: #163b2a;
+  --available-ink: #8ce3af;
+  --available-line: #347b54;
+  --unavailable-bg: #421f2a;
+  --unavailable-ink: #ffadba;
+  --unavailable-line: #945063;
+  --result-neutral-bg: #28222e;
+  --result-neutral-ink: #d3c6df;
+  --result-body: #e0d7e6;
+  --result-warning: #cbbecf;
+  --spinner-line: #67527e;
 }
 @media (min-width: 1200px) {
   .hero {
@@ -528,6 +547,9 @@ details a {
   }
   .site-header {
     padding-block: 23px;
+  }
+  .header-actions {
+    gap: 10px;
   }
   .source-link {
     font-size: 11px;
@@ -547,7 +569,6 @@ details a {
   .checker {
     margin: 0;
     padding: 22px 20px 0;
-    box-shadow: 4px 4px 0 var(--card-shadow);
   }
   .card-heading {
     margin-bottom: 22px;
@@ -604,5 +625,30 @@ details a {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand {
+    gap: 8px;
+    font-size: 11px;
+  }
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+  }
+  .brand strong {
+    font-size: 18px;
+  }
+  .header-actions {
+    gap: 8px;
+  }
+  .source-link {
+    font-size: 10px;
+    gap: 3px;
+  }
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
   }
 }

@@ -253,3 +253,16 @@ Limitations:
   both page themes, checked 320px layout and observed no JS errors. Updated the
   light/dark README captures and visually inspected icon proofs at 16/24/32/52/88px.
 - No font-based glyph, duplicate vector source, API or behavior change was added.
+
+## 1.2.0 manual theme switch and flat card — 2026-10-17
+
+- Added an early theme script and accessible sun/moon header button. The initial
+  theme follows the device; a manual light/dark choice is saved under `tuc:theme`.
+  Blocked storage uses an in-memory override. Removed the card's offset shadow.
+- Syntax/unit checks passed. One local Chrome check verified system default and
+  preference changes, keyboard activation, icon/accessible-label updates, saved
+  choice after reload, manual override, invalid/blocked storage and theme-color.
+  The card had no shadow in either theme; focus and 320px layout passed without
+  JS errors. Both README previews were refreshed and the dark capture inspected.
+- Included `theme.js` in the Pages copy list and release ZIP input list. No new
+  live Twitch or account check was required for this UI change.

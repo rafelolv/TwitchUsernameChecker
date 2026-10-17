@@ -9,6 +9,9 @@ Twitch login, passwords, OAuth tokens or cookies.
 - Searches are not saved. On load, the app removes the legacy `tuc:history:v1`
   localStorage key used by older versions without reading its contents. Storage
   failure does not stop lookups. No other stored data is cleared.
+- The theme button saves only `light` or `dark` under `tuc:theme` in localStorage.
+  Without a saved choice, the site follows your device. Storage failure does not
+  prevent switching themes. No search data is stored with this preference.
 - **Copy username** writes only the consulted name to the clipboard on request.
 - Google Fonts loads typefaces from Google domains, which receive normal request
   metadata. Local fallback fonts work if those requests fail.
