@@ -383,3 +383,29 @@ Limitations:
   320px layout passed. Refreshed README previews with the new limit.
 - No live 350-name scan was run. This is an application input limit, not a
   Twitch quota or a guarantee that a full list will complete without rate limits.
+
+
+## 1.5.0 manual list continuation — 2026-10-17
+
+### Automated and mocked browser evidence
+
+- `npm run check` passes. The request/classification module is unchanged.
+- Temporary Chrome profile, actual local page with intercepted Twitch responses:
+  stopped a 50-name list after 30 results, kept page two and continued the remaining
+  20 without repeating completed names. The aborted active name was checked again
+  because it had no result. Results and counters contained no duplicate rows.
+- Simulated HTTP 429 and HTTP 500 after one successful lookup. Continuation was
+  explicit; it retried the failed name, replaced its row, then checked untouched
+  names. The previous successful name was queried exactly once, and Failed dropped
+  to zero on success. Rate-limit guidance asks the visitor to wait before continuing.
+- Repeated cancellation before the first response kept all names pending. Editing
+  and clearing invalidated pending work; a new submission reset results. Successful
+  completion hid continuation. Both themes and 320px layouts passed, with no
+  browser script errors. Inspected the stopped-list dark screenshot.
+
+### Live limitations
+
+- No live bulk queries or rate-limit probes were run for this change. Mocked
+  continuation does not prove Twitch will accept another request immediately.
+  Failed requests stop the queue again; there are no automatic retries or timers.
+  Pending work exists only in memory and is lost on reload.

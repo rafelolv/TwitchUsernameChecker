@@ -3,6 +3,12 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.5.0
+
+- Add Continue remaining after a stopped list, keeping completed results and navigation.
+- Retry failed names only on an explicit continuation, replacing their rows without duplicates.
+- Discard pending work when the list changes or clears, and keep rate-limit guidance visible.
+
 ## 1.4.1
 
 - Raise the list limit to 350 names, keeping sequential requests and 20-row pages.

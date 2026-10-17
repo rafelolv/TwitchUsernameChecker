@@ -8,7 +8,10 @@ Twitch login, passwords, OAuth tokens or cookies.
   policies apply. Typing does not send lookup requests. Starting a list sends up to 350 names
   sequentially to the same endpoint, with no credentials. Stop checking aborts
   the current lookup and prevents remaining requests; a sent name cannot be unsent.
-  Lists and results are kept only in the current page, never in storage.
+  Lists, results and the pending queue are kept only in the current page, never
+  in storage. Continue remaining sends only pending/failed names on an explicit
+  click; completed lookups are not repeated. Editing, clearing or reloading
+  discards the pending queue.
 - Searches are not saved. On load, the app removes the legacy `tuc:history:v1`
   localStorage key used by older versions without reading its contents. Storage
   failure does not stop lookups. No other stored data is cleared.

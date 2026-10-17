@@ -214,6 +214,7 @@ form.addEventListener("submit", async (event) => {
 const listInput = $("#usernames");
 let listController;
 let listItems = [];
+let listNames = [];
 const listRows = new Map();
 let listFilter = "all";
 let listPage = 1;
@@ -308,6 +309,8 @@ $("#list-copy").addEventListener("click", async () => {
 
 function resetListResults() {
   listItems = [];
+  listNames = [];
+  $("#list-resume").hidden = true;
   listRows.clear();
   listFilter = "all";
   listPage = 1;
@@ -320,6 +323,7 @@ function setListBusy(value) {
   listInput.readOnly = value;
   $("#list-submit").disabled = value;
   $("#list-clear").disabled = value;
+  $("#list-continue").disabled = value;
 }
 
 function syncList() {
@@ -327,7 +331,11 @@ function syncList() {
   $("#list-count").textContent = `${count} / ${MAX_LIST_SIZE} names`;
   listInput.removeAttribute("aria-invalid");
   $("#list-error").hidden = true;
-  if (!busy) $("#list-output").hidden = true;
+  if (!busy) {
+    listNames = [];
+    $("#list-resume").hidden = true;
+    $("#list-output").hidden = true;
+  }
 }
 listInput.addEventListener("input", syncList);
 $("#list-clear").addEventListener("click", () => {
@@ -373,27 +381,57 @@ $("#list-form").addEventListener("submit", async (event) => {
     listInput.focus();
     return;
   }
+  resetListResults();
+  listNames = names;
+  await runRemaining();
+});
+
+$("#list-continue").addEventListener("click", async () => {
+  if (busy || !pendingNames().length) return;
+  await runRemaining();
+});
+
+function pendingNames() {
+  const finished = new Set(
+    listItems
+      .filter((item) => resultGroup(item) !== "failed")
+      .map((item) => item.username),
+  );
+  return listNames.filter((name) => !finished.has(name));
+}
+
+async function runRemaining() {
+  const remaining = pendingNames();
+  if (!remaining.length || busy) return;
+  const total = listNames.length;
   busy = true;
   setListBusy(true);
   input.readOnly = true;
   $("#submit-button").disabled = true;
   $("#clear-input").hidden = true;
   $("#list-stop").hidden = false;
+  $("#list-resume").hidden = true;
   $("#list-error").hidden = true;
   listInput.removeAttribute("aria-invalid");
-  resetListResults();
   $("#list-output").hidden = false;
   const progress = $("#list-progress");
-  progress.textContent = `Checking 0 of ${names.length}… You can stop at any time.`;
+  progress.textContent = `Checking… ${listItems.length} of ${total} names have results.`;
   listController = new AbortController();
   try {
-    const summary = await checkUsernames(listInput.value, {
+    const summary = await checkUsernames(remaining.join("\n"), {
       signal: listController.signal,
-      onResult(item, completed, total) {
-        listItems.push(item);
+      onResult(item) {
+        const index = listItems.findIndex(
+          (previous) => previous.username === item.username,
+        );
+        if (index === -1) listItems.push(item);
+        else {
+          listItems[index] = item;
+          listRows.delete(item.username);
+        }
         $("#list-copy-status").textContent = "";
         renderListPage();
-        progress.textContent = `Checked ${completed} of ${total}…`;
+        progress.textContent = `Checked ${listItems.length} of ${total}…`;
       },
     });
     const messages = {
@@ -402,9 +440,9 @@ $("#list-form").addEventListener("submit", async (event) => {
       error:
         "Stopped because a lookup failed. Remaining names weren't checked.",
       "rate-limited":
-        "Twitch is limiting requests. Stopped; remaining names weren't checked. Try again later.",
+        "Twitch is limiting requests. Wait a while before continuing.",
     };
-    progress.textContent = `${messages[summary.reason]} Checked ${summary.completed} of ${summary.total}.`;
+    progress.textContent = `${messages[summary.reason]} Checked ${listItems.length} of ${total}.`;
   } finally {
     busy = false;
     listController = undefined;
@@ -413,5 +451,9 @@ $("#list-form").addEventListener("submit", async (event) => {
     $("#submit-button").disabled = false;
     $("#clear-input").hidden = !input.value;
     $("#list-stop").hidden = true;
+    const pending = pendingNames().length;
+    $("#list-pending").textContent =
+      `${pending} ${pending === 1 ? "name" : "names"} left · completed names won't be checked again`;
+    $("#list-resume").hidden = pending === 0;
   }
-});
+}

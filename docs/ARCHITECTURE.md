@@ -101,3 +101,17 @@ A fresh submission or Clear resets results, filters and pagination.
 Copy available names takes all completed Available rows across pages, including
 unconfirmed names, on an explicit click. It never includes failed or unchecked
 names. The completion message reminds visitors to confirm unconfirmed names.
+
+After cancellation or failure, “Continue remaining” appears only if names still
+need a successful lookup. The original normalized/deduplicated list stays in page
+memory. Continuation derives pending names from the snapshot minus successful
+results, reuses the same sequential checker and never repeats a successful lookup.
+Failed/rate-limited names are retried only on this explicit click; their row is
+replaced instead of appended. Unconfirmed absent profiles count as successful
+lookups, not confirmed claimability. Counts always include unique result rows.
+Selected filters and page are preserved unless fewer matching results require
+clamping the page after a failed row becomes successful. Every new error/429
+stops again; rate-limit copy asks the visitor to wait before continuing.
+Editing, clearing, a fresh submission or reloading discards the pending snapshot.
+The single-search busy lock also disables continuation. No queue is persisted and
+there is no automatic retry, timed resume or background lookup.

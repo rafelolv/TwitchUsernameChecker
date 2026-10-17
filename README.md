@@ -32,7 +32,11 @@ Enter a username and click **Check username**, or press Enter.
 For several names, open **Check a list**, paste up to **350 names** (one per line,
 comma or space separated), then click **Check list**. Results appear as each name
 is checked. Duplicates are skipped. Use **Stop checking** to cancel; the queue also
-stops if Twitch limits requests or a lookup fails. Names are checked one at a time, as soon as Twitch responds.
+stops if Twitch limits requests or a lookup fails. If anything is left, click
+**Continue remaining** to resume without repeating completed names. Failed names
+are tried again only when you click it; their old result is replaced. Wait a while
+before continuing after a Twitch rate limit. Editing or clearing the list starts
+over, and closing/reloading the page loses the pending queue. Names are checked one at a time, as soon as Twitch responds.
 
 Use **All**, **Available**, **Unavailable** or **Failed** to filter the results.
 Each page holds up to 20 names. **Copy available names** copies all names marked

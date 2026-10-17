@@ -53,7 +53,11 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
   350 names, validated before any request and deduplicated. Keep one request in
   flight across both modes, start the next name when the previous response is
   handled without an artificial pause, allow immediate cancellation and stop the queue on errors or rate limits. No background scans,
-  polling, automatic retries or saved lists.
+  polling, automatic retries or saved lists. Allow an explicit Continue remaining
+  action after cancellation/failure: retain completed results, query only pending
+  or failed names, replace failed rows without duplicates and stop again on error.
+  Keep the pending snapshot in memory only; edits, clearing or a new submission
+  discard it. Remind visitors to wait after a rate limit.
 - Keep list results compact: counters/filters, 20-row pages, stable focus and scroll
   during streaming, and visible unconfirmed labels. Copy available names includes
   completed available/unknown results across pages, with a confirmation reminder;
