@@ -34,17 +34,17 @@ numbers or underscores. Searches are not saved.
 | Failed / rate-limited               | The lookup failed or Twitch limited requests.                    |
 
 **“Available” based on an absent profile is a best-effort label, not a guarantee.**
-It appears in amber with **“Not confirmed by Twitch”** and a visible warning.
+It appears in green with **“Not confirmed by Twitch”** and a visible warning.
 Some names cannot be used after a rename, suspension or deactivation even when
 no profile is visible. Twitch does not provide a precise public claimability
 check. Confirm the name on Twitch before choosing it.
 
-A green result with **“Confirmed by Twitch”** requires an actual positive
+The **“Confirmed by Twitch”** field requires an actual positive
 availability response. The internal GraphQL endpoint is unsupported and may block
 that check with `IntegrityCheckFailed`. Failed requests are never labeled available.
 
-Only Twitch registration or username editing can confirm that you can claim a
-name. Availability can change; this tool does not reserve names or predict release
+To confirm a name, sign in to Twitch and try it in
+[Settings → Profile](https://www.twitch.tv/settings/profile). Availability can change; this tool does not reserve names or predict release
 dates. See [architecture](docs/ARCHITECTURE.md) and
 [actual validation results](docs/VALIDATION.md).
 The [availability investigation](docs/AVAILABILITY.md) compares the methods tested

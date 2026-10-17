@@ -3,6 +3,11 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.0.7
+
+- Show Available results in green while preserving the unconfirmed warning.
+- Link confirmation to Twitch Settings → Profile with sign-in guidance.
+
 ## 1.0.6
 
 - Remove recent searches and stop saving lookups. Clear legacy saved history on load.

@@ -321,7 +321,8 @@ kbd {
   background: #fcf0f2;
   border-color: var(--red);
 }
-.result[data-state="available"] {
+.result[data-state="available"],
+.result[data-state="unknown"] {
   background: #edf6ed;
   border-color: var(--green);
 }
@@ -329,12 +330,12 @@ kbd {
   background: #fbf3e7;
   border-color: var(--amber);
 }
-.result[data-state="unknown"] {
-  background: #fbf3e7;
-  border-color: var(--amber);
-}
 .dot.unknown {
-  background: var(--amber);
+  background: var(--green);
+}
+.result[data-state="available"] .result-heading,
+.result[data-state="unknown"] .result-heading {
+  color: var(--green);
 }
 .result-heading {
   display: flex;

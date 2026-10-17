@@ -13,7 +13,7 @@ const states = {
     label: "Available",
     title: "This name is free right now.",
     description:
-      "Try it in Twitch's sign-up form or your profile settings. This check doesn't reserve the name.",
+      "Sign in to Twitch and check the name under Settings → Profile. This check doesn't reserve it.",
     profile: "Not found",
     availability: "Confirmed by Twitch",
     action: "Use on Twitch ↗",
@@ -40,13 +40,14 @@ const states = {
   unknown: {
     label: "Available",
     title: "No public profile found.",
-    description: "Try this name on Twitch to see if you can use it.",
+    description:
+      "Sign in to Twitch and check this name under Settings → Profile.",
     caveat:
       "Not confirmed by Twitch. Some names still can't be used because they're reserved or held after a rename, suspension or deactivation. Twitch doesn't offer a precise public availability check, so confirm the name there.",
     profile: "Not found",
     availability: "Not confirmed by Twitch",
-    action: "Confirm on Twitch ↗",
-    url: "https://www.twitch.tv/signup",
+    action: "Check in Twitch settings ↗",
+    url: "https://www.twitch.tv/settings/profile",
   },
   error: {
     label: "Lookup failed",

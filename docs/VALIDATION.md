@@ -188,3 +188,13 @@ Limitations:
   confirmed the key was removed and no history UI exists, then verified lookups
   do not recreate storage. Result warnings, failed lookups and a 320px viewport
   also passed without JS errors. No new live Twitch check was needed.
+
+## 1.0.7 green Available and settings link — 2026-10-17
+
+- Available result labels/cards now use green, including the absent-profile
+  fallback. The confirmation field and visible warning still distinguish an
+  unconfirmed result. Confirmation links point to Twitch Settings → Profile,
+  with instructions to sign in there.
+- Syntax/unit checks passed. One local Chrome smoke check verified the computed
+  green label color, settings URL, sign-in text, visible warning and 320px layout
+  without JS errors. README preview refreshed. No new live API test was needed.

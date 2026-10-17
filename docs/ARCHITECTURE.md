@@ -36,10 +36,12 @@ not the official Helix API. No login, token or client secret is used.
 | `rate-limited` | HTTP 429; no automatic retry.                                            |
 
 The internal `unknown` state uses the user-requested **Available** display label,
-in amber, with **Profile: Not found**, **Availability: Not confirmed by Twitch**
+in green, with **Profile: Not found**, **Availability: Not confirmed by Twitch**
 and an always-visible warning about reserved/held names and imprecise lookup.
 This is a best-effort presentation fallback, not evidence of claimability.
-A true availability response uses green with **Confirmed by Twitch**. Errors never
+Both display labels use green; only a true response shows **Confirmed by Twitch**.
+Color does not imply confirmation. Confirmation links go to Twitch Settings → Profile
+and require signing in to Twitch. Errors never
 enter this fallback.
 See [the availability investigation](AVAILABILITY.md) for tested approaches.
 
