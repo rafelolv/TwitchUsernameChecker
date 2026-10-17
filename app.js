@@ -8,7 +8,6 @@ const $ = (selector) => document.querySelector(selector);
 const input = $("#username");
 const form = $("#check-form");
 const result = $("#result");
-const storageKey = "tuc:history:v1";
 const states = {
   available: {
     label: "Available",
@@ -68,22 +67,11 @@ const states = {
 };
 
 let busy = false;
-let history = [];
+// Remove searches saved by earlier versions without reading their contents.
 try {
-  const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-  if (Array.isArray(saved))
-    history = saved
-      .filter(
-        (item) =>
-          item &&
-          typeof item.username === "string" &&
-          !validateUsername(item.username) &&
-          Object.hasOwn(states, item.state) &&
-          Number.isFinite(item.checkedAt),
-      )
-      .slice(0, 6);
+  localStorage.removeItem("tuc:history:v1");
 } catch {
-  /* Storage is optional, including in private browsing. */
+  /* Storage may be unavailable. The checker does not need it. */
 }
 
 function element(tag, className, content) {
@@ -91,46 +79,6 @@ function element(tag, className, content) {
   if (className) node.className = className;
   if (content !== undefined) node.textContent = content;
   return node;
-}
-
-function renderHistory() {
-  $("#history-section").hidden = history.length === 0;
-  $("#history-list").replaceChildren(
-    ...history.map((item) => {
-      const li = element("li");
-      const button = element("button");
-      button.type = "button";
-      button.title = `Last result: ${states[item.state].label}. Check again.`;
-      button.setAttribute(
-        "aria-label",
-        `Check ${item.username} again. Previous result: ${states[item.state].label}`,
-      );
-      const dot = element("i", `dot ${item.state}`);
-      dot.setAttribute("aria-hidden", "true");
-      button.append(dot, document.createTextNode(`@${item.username}`));
-      button.addEventListener("click", () => {
-        if (busy) return;
-        input.value = item.username;
-        syncInput();
-        form.requestSubmit();
-      });
-      li.append(button);
-      return li;
-    }),
-  );
-}
-
-function saveHistory(item) {
-  history = [
-    item,
-    ...history.filter((previous) => previous.username !== item.username),
-  ].slice(0, 6);
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(history));
-  } catch {
-    /* Keep in-memory history. */
-  }
-  renderHistory();
 }
 
 function renderResult(item) {
@@ -211,16 +159,6 @@ $("#clear-input").addEventListener("click", () => {
   syncInput();
   input.focus();
 });
-$("#clear-history").addEventListener("click", () => {
-  history = [];
-  try {
-    localStorage.removeItem(storageKey);
-  } catch {
-    /* Optional persistence. */
-  }
-  renderHistory();
-});
-
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (busy) return;
@@ -267,8 +205,4 @@ form.addEventListener("submit", async (event) => {
     result.setAttribute("aria-busy", "false");
   }
   renderResult(item);
-  if (item.state !== "error" && item.state !== "rate-limited")
-    saveHistory(item);
 });
-
-renderHistory();

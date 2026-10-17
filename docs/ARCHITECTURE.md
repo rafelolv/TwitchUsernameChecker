@@ -7,7 +7,7 @@ or runtime npm dependency.
 | ----------------------------- | ---------------------------------------------------------------- |
 | `index.html`                  | Structure, English copy, labels and help.                        |
 | `styles.css`                  | Responsive layout, palette, focus and motion rules.              |
-| `app.js`                      | Form lifecycle, results, clipboard and local history.            |
+| `app.js`                      | Form lifecycle, results, clipboard and legacy-history cleanup.   |
 | `checker.js`                  | Normalization, validation, Twitch request and classification.    |
 | `assets/logo.svg`             | Canonical nameplate mark used by the header, favicon and README. |
 | `tests/checker.test.js`       | Network-independent request/classification tests.                |
@@ -40,7 +40,7 @@ in amber, with **Profile: Not found**, **Availability: Not confirmed by Twitch**
 and an always-visible warning about reserved/held names and imprecise lookup.
 This is a best-effort presentation fallback, not evidence of claimability.
 A true availability response uses green with **Confirmed by Twitch**. Errors never
-enter this fallback. The history key and state remain compatible with 1.0.0.
+enter this fallback.
 See [the availability investigation](AVAILABILITY.md) for tested approaches.
 
 An availability-field integrity error does not invalidate a separately successful
@@ -50,9 +50,9 @@ allow final confirmation; the site does not reserve names. See
 
 ## Storage and output
 
-`tuc:history:v1` stores up to six `{ username, state, checkedAt }` objects in
-`localStorage`. Entries are validated on load; failed storage falls back to memory.
-New errors/rate limits are not saved. Selecting history makes a fresh request.
+Searches are not persisted and there is no recent-search UI. On load, `app.js`
+removes the legacy `tuc:history:v1` key without reading saved values. Storage
+exceptions are ignored; the checker does not depend on storage.
 
 Deployment copies HTML, CSS, both JS modules and `assets/` into `dist/`, plus
 `.nojekyll` and `LICENSE`. Docs, tests and development metadata are excluded. Runtime source

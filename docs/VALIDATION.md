@@ -178,3 +178,13 @@ Limitations:
   new label and warning, confirmed true/false results, failed lookups, signup link
   and 320px layout without JS errors. README preview refreshed. No new live API
   investigation was run for this presentation-only change.
+
+## 1.0.6 remove recent searches — 2026-10-17
+
+- Removed the history UI, styles, saved-entry loading and search persistence.
+  The page removes only the legacy `tuc:history:v1` key on load, without reading
+  its values; unavailable storage is tolerated. Updated privacy docs and preview.
+- Syntax/unit checks passed. A targeted local Chrome check seeded old history,
+  confirmed the key was removed and no history UI exists, then verified lookups
+  do not recreate storage. Result warnings, failed lookups and a 320px viewport
+  also passed without JS errors. No new live Twitch check was needed.

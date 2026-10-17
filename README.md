@@ -5,7 +5,7 @@
 # Twitch Username Checker
 
 A small, independent Twitch nickname checker with an English
-interface, a cream/purple identity and local search history. Built with HTML,
+interface and a cream/purple identity. Built with HTML,
 CSS and native JavaScript modules for GitHub Pages. No runtime npm dependencies,
 application backend or login.
 
@@ -21,8 +21,7 @@ check. One vector is used across the site, favicon and this README. See
 
 Enter a username and press **Check username** or Enter. The input caps typing and
 pasting at 25 characters, with a live counter. Names must have 4–25 letters,
-numbers or underscores. Recent searches stay in this browser and are checked
-again when selected.
+numbers or underscores. Searches are not saved.
 
 ## What it can confirm
 
@@ -92,10 +91,9 @@ and checksums through a separate workflow; no store publishing is configured.
 
 ## Privacy
 
-Nicknames are sent directly to Twitch on explicit submission. The six most recent
-lookups are saved only in this browser's local storage; they can be cleared.
-Selecting history always performs a new lookup. Fonts load from Google Fonts,
-with local fallbacks. There is no application telemetry.
+Nicknames are sent directly to Twitch on explicit submission. Searches are not
+saved. Old history from previous versions is removed when the page loads.
+Fonts load from Google Fonts, with local fallbacks. There is no application telemetry.
 
 See [privacy and external requests](docs/PRIVACY.md) for hosting, storage and
 clipboard details. Do not put credentials or private history into issue reports.

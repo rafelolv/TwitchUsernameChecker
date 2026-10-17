@@ -6,12 +6,9 @@ Twitch login, passwords, OAuth tokens or cookies.
 - Explicit lookups send the nickname to `gql.twitch.tv` with `credentials: omit`.
   Twitch receives normal connection metadata, including IP address. Its service
   policies apply. Typing does not send lookup requests.
-- Up to six names, result states and timestamps are saved under `tuc:history:v1`
-  in this origin's `localStorage`. This is not encrypted or secret storage.
-  Other same-origin scripts can access it; GitHub Pages project paths share the
-  `rafelolv.github.io` origin.
-- **Clear history** removes saved history and the in-memory list. It does not
-  clear the current result, clipboard or third-party server logs.
+- Searches are not saved. On load, the app removes the legacy `tuc:history:v1`
+  localStorage key used by older versions without reading its contents. Storage
+  failure does not stop lookups. No other stored data is cleared.
 - **Copy username** writes only the consulted name to the clipboard on request.
 - Google Fonts loads typefaces from Google domains, which receive normal request
   metadata. Local fallback fonts work if those requests fail.

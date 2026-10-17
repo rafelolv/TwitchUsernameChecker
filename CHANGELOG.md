@@ -3,6 +3,10 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.0.6
+
+- Remove recent searches and stop saving lookups. Clear legacy saved history on load.
+
 ## 1.0.5
 
 - Label successful absent-profile lookups “Available”, with “Not confirmed by Twitch”
