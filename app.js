@@ -212,6 +212,108 @@ form.addEventListener("submit", async (event) => {
 
 const listInput = $("#usernames");
 let listController;
+let listItems = [];
+const listRows = new Map();
+let listFilter = "all";
+let listPage = 1;
+const PAGE_SIZE = 20;
+
+function resultGroup(item) {
+  if (item.state === "available" || item.state === "unknown")
+    return "available";
+  if (item.state === "taken" || item.state === "unavailable")
+    return "unavailable";
+  return "failed";
+}
+
+function renderListPage() {
+  const counts = {
+    all: listItems.length,
+    available: 0,
+    unavailable: 0,
+    failed: 0,
+  };
+  for (const item of listItems) counts[resultGroup(item)]++;
+  for (const button of document.querySelectorAll("[data-filter]")) {
+    button.querySelector("span").textContent = counts[button.dataset.filter];
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.filter === listFilter),
+    );
+  }
+  const filtered = listItems.filter(
+    (item) => listFilter === "all" || resultGroup(item) === listFilter,
+  );
+  const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  listPage = Math.min(listPage, pages);
+  const start = (listPage - 1) * PAGE_SIZE;
+  const container = $(".list-results");
+  const scroll = container.scrollTop;
+  const rows = filtered.slice(start, start + PAGE_SIZE).map((item) => {
+    if (!listRows.has(item.username))
+      listRows.set(item.username, createListRow(item));
+    return listRows.get(item.username);
+  });
+  const list = $("#list-results");
+  for (const row of [...list.children]) if (!rows.includes(row)) row.remove();
+  rows.forEach((row, index) => {
+    if (list.children[index] !== row)
+      list.insertBefore(row, list.children[index] || null);
+  });
+  container.scrollTop = scroll;
+  $("#list-empty").hidden = filtered.length > 0;
+  $("#list-empty").textContent =
+    listFilter === "all" ? "No results yet." : "No matching results yet.";
+  $("#list-range").textContent = filtered.length
+    ? `${start + 1}–${Math.min(start + PAGE_SIZE, filtered.length)} of ${filtered.length}`
+    : "0 results";
+  $("#list-page").textContent = `${listPage} / ${pages}`;
+  $("#list-prev").disabled = listPage === 1;
+  $("#list-next").disabled = listPage === pages;
+  $("#list-copy").disabled = counts.available === 0;
+}
+
+for (const button of document.querySelectorAll("[data-filter]")) {
+  button.addEventListener("click", () => {
+    listFilter = button.dataset.filter;
+    listPage = 1;
+    renderListPage();
+    $(".list-results").scrollTop = 0;
+  });
+}
+for (const [selector, direction] of [
+  ["#list-prev", -1],
+  ["#list-next", 1],
+]) {
+  $(selector).addEventListener("click", () => {
+    listPage += direction;
+    renderListPage();
+    $(".list-results").scrollTop = 0;
+  });
+}
+$("#list-copy").addEventListener("click", async () => {
+  const names = listItems
+    .filter((item) => resultGroup(item) === "available")
+    .map((item) => item.username);
+  try {
+    await navigator.clipboard.writeText(names.join("\n"));
+    $("#list-copy-status").textContent =
+      `Copied ${names.length} names. Check unconfirmed names on Twitch.`;
+  } catch {
+    $("#list-copy-status").textContent =
+      "Couldn't copy. Check your browser's clipboard permissions.";
+  }
+});
+
+function resetListResults() {
+  listItems = [];
+  listRows.clear();
+  listFilter = "all";
+  listPage = 1;
+  $("#list-copy-status").textContent = "";
+  renderListPage();
+  $(".list-results").scrollTop = 0;
+}
 
 function setListBusy(value) {
   listInput.readOnly = value;
@@ -229,13 +331,13 @@ function syncList() {
 listInput.addEventListener("input", syncList);
 $("#list-clear").addEventListener("click", () => {
   listInput.value = "";
-  $("#list-results").replaceChildren();
+  resetListResults();
   syncList();
   listInput.focus();
 });
 $("#list-stop").addEventListener("click", () => listController?.abort());
 
-function renderListResult(item) {
+function createListRow(item) {
   const content = states[item.state];
   const row = element("li", "list-result");
   row.dataset.state = item.state;
@@ -253,7 +355,7 @@ function renderListResult(item) {
   if (content.availability)
     status.append(element("span", "", content.availability));
   row.append(name, status);
-  $("#list-results").append(row);
+  return row;
 }
 
 $("#list-form").addEventListener("submit", async (event) => {
@@ -278,7 +380,7 @@ $("#list-form").addEventListener("submit", async (event) => {
   $("#list-stop").hidden = false;
   $("#list-error").hidden = true;
   listInput.removeAttribute("aria-invalid");
-  $("#list-results").replaceChildren();
+  resetListResults();
   $("#list-output").hidden = false;
   const progress = $("#list-progress");
   progress.textContent = `Checking 0 of ${names.length}… You can stop at any time.`;
@@ -287,7 +389,9 @@ $("#list-form").addEventListener("submit", async (event) => {
     const summary = await checkUsernames(listInput.value, {
       signal: listController.signal,
       onResult(item, completed, total) {
-        renderListResult(item);
+        listItems.push(item);
+        $("#list-copy-status").textContent = "";
+        renderListPage();
         progress.textContent = `Checked ${completed} of ${total}…`;
       },
     });

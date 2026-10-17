@@ -332,14 +332,12 @@ Limitations:
   on failures without retries. Simulated timings do not prove sustained live
   throughput or availability. No live 100-name scan was run.
 
-
 ## 1.3.3 FAQ cleanup — 2026-10-17
 
 - `npm run check` passes. Temporary Chrome profile: the sign-in question is absent,
   two FAQ entries remain, and both themes fit at 320px without horizontal overflow.
   Refreshed the README previews. Preview lookup responses were mocked; no request
   behavior changed and no live Twitch checks were needed.
-
 
 ## 1.3.4 footer spacing — 2026-10-17
 
@@ -348,3 +346,28 @@ Limitations:
   fits at 320px. Inspected the dark preview and refreshed both README screenshots.
 - Preview lookup responses were mocked. Request behavior did not change; no
   new live Twitch checks were needed.
+
+## 1.4.0 list result navigation — 2026-10-17
+
+### Automated and mocked browser evidence
+
+- `npm run check` passes. No request or classification code changed.
+- Actual local page in temporary Chrome, with 100 intercepted responses:
+  verified 20-row pages, 100 total / 50 Available / 50 Unavailable counts,
+  status filters, empty Failed results, last-page bounds, and correct reset on
+  new submissions and clearing. Failed and HTTP 429 rows stay out of Available.
+- Held a response after 30 names, navigated to page two and focused a username.
+  After all 100 completed, the selected page, focused link, window scroll and
+  internal result scroll remained unchanged.
+- Copy available names wrote exactly 50 names across all pages, excluding
+  unavailable results. Unconfirmed labels and the shared reservation warning
+  remain visible. Clipboard was stubbed, not the real system clipboard.
+- Inspected desktop/light and 320px/dark screenshots. Both themes fit at 320px
+  without horizontal overflow. Filters wrap into two columns on narrow screens;
+  the result area stays bounded rather than extending through all 100 names.
+
+### Live limitations
+
+- All new list-navigation checks used mocked responses, not a live 100-name scan.
+  These presentation changes do not improve Twitch confirmation or throughput.
+  Unknown rows remain internally unknown; copying them does not confirm availability.

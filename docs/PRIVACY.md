@@ -16,6 +16,8 @@ Twitch login, passwords, OAuth tokens or cookies.
   Without a saved choice, the site follows your device. Storage failure does not
   prevent switching themes. No search data is stored with this preference.
 - **Copy username** writes only the consulted name to the clipboard on request.
+  **Copy available names** writes all completed list results marked Available,
+  including unconfirmed names, across all pages. Neither action reads the clipboard.
 - Google Fonts loads typefaces from Google domains, which receive normal request
   metadata. Local fallback fonts work if those requests fail.
 - GitHub Pages receives normal hosting request metadata. External GitHub/Twitch

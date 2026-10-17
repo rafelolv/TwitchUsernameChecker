@@ -226,12 +226,74 @@ thirdname"
               to confirm.
             </p>
             <div
+              class="result-filters"
+              role="group"
+              aria-label="Filter list results"
+            >
+              <button type="button" data-filter="all" aria-pressed="true">
+                All <span>0</span>
+              </button>
+              <button
+                type="button"
+                data-filter="available"
+                aria-pressed="false"
+              >
+                Available <span>0</span>
+              </button>
+              <button
+                type="button"
+                data-filter="unavailable"
+                aria-pressed="false"
+              >
+                Unavailable <span>0</span>
+              </button>
+              <button type="button" data-filter="failed" aria-pressed="false">
+                Failed <span>0</span>
+              </button>
+            </div>
+            <div class="list-table-heading" aria-hidden="true">
+              <span>Username</span><span>Result</span>
+            </div>
+            <div
               class="list-results"
               tabindex="0"
               role="region"
               aria-label="List results"
             >
               <ul id="list-results"></ul>
+              <p id="list-empty" hidden>No results yet.</p>
+            </div>
+            <div class="list-pagination">
+              <span id="list-range">0 results</span>
+              <nav aria-label="Result pages">
+                <button
+                  type="button"
+                  id="list-prev"
+                  aria-label="Previous result page"
+                  disabled
+                >
+                  ←
+                </button>
+                <span id="list-page">1 / 1</span>
+                <button
+                  type="button"
+                  id="list-next"
+                  aria-label="Next result page"
+                  disabled
+                >
+                  →
+                </button>
+              </nav>
+            </div>
+            <div class="list-copy-row">
+              <button type="button" class="text-button" id="list-copy" disabled>
+                Copy available names
+              </button>
+              <span
+                id="list-copy-status"
+                role="status"
+                aria-live="polite"
+              ></span>
             </div>
           </div>
         </details>

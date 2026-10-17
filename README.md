@@ -34,6 +34,11 @@ comma or space separated), then click **Check list**. Results appear as each nam
 is checked. Duplicates are skipped. Use **Stop checking** to cancel; the queue also
 stops if Twitch limits requests or a lookup fails. Names are checked one at a time, as soon as Twitch responds.
 
+Use **All**, **Available**, **Unavailable** or **Failed** to filter the results.
+Each page holds up to 20 names. **Copy available names** copies all names marked
+Available, including those on other pages; unconfirmed names still need checking
+on Twitch.
+
 Use 4–25 letters, numbers or underscores. The site follows your browser’s light
 or dark theme. Use the sun/moon button at the top to switch; it remembers your choice.
 

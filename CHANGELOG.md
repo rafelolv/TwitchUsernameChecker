@@ -3,6 +3,12 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.4.0
+
+- Organize list results into compact rows, status filters with counts and 20-name pages.
+- Keep the selected page, focus and scroll position as new results arrive.
+- Add copying of all available names, with unconfirmed results clearly identified.
+
 ## 1.3.4
 
 - Remove the extra footer divider and tighten the space below the FAQ.

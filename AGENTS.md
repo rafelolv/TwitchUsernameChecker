@@ -54,6 +54,10 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
   flight across both modes, start the next name when the previous response is
   handled without an artificial pause, allow immediate cancellation and stop the queue on errors or rate limits. No background scans,
   polling, automatic retries or saved lists.
+- Keep list results compact: counters/filters, 20-row pages, stable focus and scroll
+  during streaming, and visible unconfirmed labels. Copy available names includes
+  completed available/unknown results across pages, with a confirmation reminder;
+  never copy failed or unchecked names as available.
 - Render through DOM/text APIs, never dynamic HTML parsing. Do not save searches
   or reintroduce recent-search UI. Remove only the legacy `tuc:history:v1` key on
   load; tolerate unavailable storage. Do not log raw API bodies or exceptions.

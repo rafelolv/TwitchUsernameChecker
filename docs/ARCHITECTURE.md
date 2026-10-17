@@ -89,3 +89,15 @@ leaves remaining entries unchecked. Each row preserves the existing internal
 classification, with a visible “Not confirmed by Twitch” label for unknown names
 and an always-visible shared reservation warning. Lists and results stay in memory
 only. Closing the disclosure does not cancel a running list; use Stop checking.
+
+List results use in-memory counters and filters (All, Available, Unavailable,
+Failed), 20-row pages and a bounded scroll region. Available groups `available`
+and `unknown`; Unavailable groups `taken` and `unavailable`; failures remain
+separate. Unknown rows retain their unconfirmed label and the shared warning.
+Counters include all completed rows; filtering and pagination never send requests.
+Arriving rows preserve the selected filter/page, row focus and result scroll.
+Rows are reconciled as DOM nodes rather than rebuilt while the visitor reads.
+A fresh submission or Clear resets results, filters and pagination.
+Copy available names takes all completed Available rows across pages, including
+unconfirmed names, on an explicit click. It never includes failed or unchecked
+names. The completion message reminds visitors to confirm unconfirmed names.
