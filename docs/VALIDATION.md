@@ -44,3 +44,19 @@ Limitations:
   assets and `.nojekyll`. This is local packaging evidence, not an Actions run.
 - GitHub Actions execution and hosted deployment remain unverified until run on
   GitHub. The workflow has not been validated by GitHub's own runner.
+
+## Release 1.0.0 publication — 2026-10-16
+
+- Pushed the initial commit `73a1a9a` to `main` and an annotated `v1.0.0` tag.
+- The [release workflow](https://github.com/rafelolv/TwitchUsernameChecker/actions/runs/38995231719)
+  completed successfully, including validation and publication of the static ZIP
+  and `SHA256SUMS`.
+- Downloaded both assets from the
+  [published release](https://github.com/rafelolv/TwitchUsernameChecker/releases/tag/v1.0.0).
+  The checksum passed, the ZIP was byte-identical to the validated local package,
+  and every runtime file and the MIT license matched the canonical source.
+- The [initial Pages run](https://github.com/rafelolv/TwitchUsernameChecker/actions/runs/38995130457)
+  passed checks but failed deployment configuration because Pages was disabled.
+  Enabling GitHub Actions as the Pages source and a new deployment are pending.
+- No published tags, release assets or release notes were replaced. Hosted browser
+  testing remains pending; the earlier local live-query limits still apply.
