@@ -20,6 +20,9 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
 - Preserve the cream/purple identity, one primary search, restrained decoration,
   explicit labels, keyboard access, visible focus, live result announcements,
   reduced motion and narrow layouts. Keep shared colors in CSS variables.
+- Follow the browser/system theme with `prefers-color-scheme`. Keep both themes
+  readable, including result warnings, input focus and error states. No theme
+  preference is stored; theme changes must apply without a reload.
 - `assets/logo.svg` is the canonical nameplate mark for the header, favicon and
   README. Preserve its cut corner, brackets and mint check; do not maintain
   independently drawn copies or replace it with a generic character/tile.
@@ -32,8 +35,8 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
   profile with blocked availability displays “Available”, accompanied by
   “Not confirmed by Twitch” and an always-visible reservation/accuracy warning.
   This is a user-requested presentation fallback; keep its internal `unknown`
-  state and never describe it as confirmed. Use soft sage for Available and muted
-  clay for Unavailable, with a uniform thin outline and no status dots or decorative
+  state and never describe it as confirmed. Use clear green for Available and red
+  for Unavailable, with a uniform thin outline and no status dots or decorative
   side stripes. Keep these result colors in shared CSS variables. Use only Available/Unavailable
   for availability outcomes; request errors remain distinct. Do not restore the
   “What the results mean” section.

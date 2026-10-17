@@ -225,3 +225,20 @@ Limitations:
 
 - Removed the decorative Twitch Usernames label and its styles. Syntax/unit
   checks and a local Chrome heading/result smoke check passed; README preview refreshed.
+
+## 1.1.0 automatic dark theme — 2026-10-17
+
+- Added CSS-only browser/system theme following with `prefers-color-scheme`.
+  Shared variables cover surfaces, text, controls, focus and result colors; native
+  controls and browser theme metadata follow too. No settings, storage or theme
+  JavaScript were added.
+- Increased the green/red distinction in both themes. Uniform borders, no side
+  stripes, the two outcome labels and the unconfirmed warning are preserved.
+- Syntax/unit checks passed. One local Chrome run exercised five response states
+  in both themes, switched light/dark/light without reload, checked input focus,
+  validation and 320px layout, and observed no JS errors or overflow.
+- Sampled visible text (intro, hints, prefix, metadata, primary button, result
+  labels/body/warning/facts/links/time) met 4.5:1 contrast in all tested states.
+  This is targeted contrast evidence, not a full accessibility audit.
+- Light/dark screenshots were visually inspected and added to the README's
+  theme-aware preview. No live Twitch or physical-device check was repeated.

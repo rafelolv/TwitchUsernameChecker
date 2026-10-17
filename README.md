@@ -20,18 +20,22 @@
 <details>
   <summary>See the site</summary>
   <br />
-  <img src="docs/images/preview.png" alt="The checker showing an example result" width="860" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/preview-dark.png" />
+    <img src="docs/images/preview.png" alt="The checker showing an example result" width="860" />
+  </picture>
 </details>
 
 ## Using it
 
 Enter a username and click **Check username**, or press Enter.
-Use 4–25 letters, numbers or underscores.
+Use 4–25 letters, numbers or underscores. The site follows your browser’s light
+or dark theme.
 
-| Result | What it means |
-| --- | --- |
-| **Available** | No public account was found, or Twitch confirmed the name is free. |
-| **Unavailable** | An account uses the name, or Twitch says it can't be used. |
+| Result          | What it means                                                      |
+| --------------- | ------------------------------------------------------------------ |
+| **Available**   | No public account was found, or Twitch confirmed the name is free. |
+| **Unavailable** | An account uses the name, or Twitch says it can't be used.         |
 
 > [!NOTE]
 > **Available isn't a guarantee.** If you see **Not confirmed by Twitch**, the name

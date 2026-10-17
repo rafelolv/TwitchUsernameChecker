@@ -3,6 +3,11 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.1.0
+
+- Follow the browser’s light/dark preference automatically, including live theme changes.
+- Make green and red results more distinct and keep warnings readable in both themes.
+
 ## 1.0.10
 
 - Remove the decorative label above the main heading and its unused styles.
