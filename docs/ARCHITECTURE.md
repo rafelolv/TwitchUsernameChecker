@@ -35,12 +35,12 @@ not the official Helix API. No login, token or client secret is used.
 | `error`        | Missing/failed lookup, failed request, invalid JSON or timeout.          |
 | `rate-limited` | HTTP 429; no automatic retry.                                            |
 
-The internal `unknown` state is displayed as **Possibly available**, in amber, with
-separate **Profile: Not found** and **Availability: Not verified** facts and a
-visible warning about reserved/held names. This is an unconfirmed fallback, not a
-probability estimate or evidence of claimability. Only a true availability response
-uses the green **Available** state. Errors never enter the fallback.
-The history storage key and state remain compatible with 1.0.0.
+The internal `unknown` state uses the user-requested **Available** display label,
+in amber, with **Profile: Not found**, **Availability: Not confirmed by Twitch**
+and an always-visible warning about reserved/held names and imprecise lookup.
+This is a best-effort presentation fallback, not evidence of claimability.
+A true availability response uses green with **Confirmed by Twitch**. Errors never
+enter this fallback. The history key and state remain compatible with 1.0.0.
 See [the availability investigation](AVAILABILITY.md) for tested approaches.
 
 An availability-field integrity error does not invalidate a separately successful

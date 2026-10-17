@@ -3,6 +3,12 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.0.5
+
+- Label successful absent-profile lookups “Available”, with “Not confirmed by Twitch”
+  and a visible warning about reserved names and imprecise availability checks.
+- Keep errors separate and distinguish actual Twitch confirmation in the result.
+
 ## 1.0.4
 
 - Show unconfirmed absent-profile lookups as amber “Possibly available”, with an

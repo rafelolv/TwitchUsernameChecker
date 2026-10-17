@@ -167,3 +167,14 @@ Limitations:
   names showed the unverified fallback and visible warning. README preview updated.
 - No signed-in rename, completed registration, personal browser profile, account
   change or bypass of integrity checks was involved.
+
+## 1.0.5 requested Available fallback — 2026-10-17
+
+- At the maintainer's request, absent-profile lookups with unconfirmed
+  claimability now display “Available”, with “Not confirmed by Twitch” and an
+  always-visible warning about reservations and the lack of a precise public
+  availability check. Internal classification and error handling are unchanged.
+- Syntax/unit checks passed. A targeted local Chrome smoke check verified the
+  new label and warning, confirmed true/false results, failed lookups, signup link
+  and 320px layout without JS errors. README preview refreshed. No new live API
+  investigation was run for this presentation-only change.

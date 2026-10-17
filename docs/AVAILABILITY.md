@@ -30,16 +30,22 @@ a rename, are deactivated or are restricted can all be missing from user lookup:
 See also [Twitch's username policy](https://help.twitch.tv/s/article/username-rename-and-recycling-policies?language=en_US)
 and [official Get Users documentation](https://dev.twitch.tv/docs/api/reference/#get-users).
 
-## Product fallback
+## Product fallback (1.0.5)
 
-- Green **Available**: explicit successful availability `true`, with no account.
+At the maintainer's request, successful absent-profile lookups use **Available**
+as the main display label even when claimability cannot be confirmed. This is a
+presentation decision, not a new detection method.
+
+- Green **Available**, **Confirmed by Twitch**: explicit successful availability
+  `true`, with no account.
 - **Unavailable**: explicit successful availability `false`, with no account.
-- Amber **Possibly available**: successful absent-profile lookup, but availability
-  blocked or unconfirmed. Always show **Availability: Not verified** and a visible
-  warning that the name may be reserved or held after account changes.
+- Amber **Available**, **Not confirmed by Twitch**: absent public profile with
+  blocked/unconfirmed availability. Always show the visible reservation/accuracy
+  warning. Internally this remains `unknown`.
 - **Taken**, **Lookup failed** and **Too many requests** keep their existing meaning.
 
-Both reported examples can therefore show the same amber fallback. It is not a
-guarantee, confidence score or probability estimate. Final confirmation happens on
-Twitch in signup or username settings. A future method must demonstrate different,
-valid responses for held and claimable names before replacing this fallback.
+Both reported examples can show the same unconfirmed Available label. Some names
+may still be reserved or held after a rename, suspension or deactivation. This
+fallback is not a guarantee, confidence score or probability estimate. Final
+confirmation happens on Twitch. A future detection method must demonstrate valid,
+different responses for held and claimable names before it can claim to distinguish them.

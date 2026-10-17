@@ -16,7 +16,7 @@ const states = {
     description:
       "Try it in Twitch's sign-up form or your profile settings. This check doesn't reserve the name.",
     profile: "Not found",
-    availability: "Available",
+    availability: "Confirmed by Twitch",
     action: "Use on Twitch ↗",
     url: "https://www.twitch.tv/settings/profile",
   },
@@ -39,14 +39,13 @@ const states = {
     url: "https://www.twitch.tv/settings/profile",
   },
   unknown: {
-    label: "Possibly available",
-    title: "Confirm it on Twitch.",
-    description:
-      "We couldn't find a public profile with this name, but Twitch hasn't confirmed whether you can claim it.",
+    label: "Available",
+    title: "No public profile found.",
+    description: "Try this name on Twitch to see if you can use it.",
     caveat:
-      "Availability isn't confirmed. The name could still be reserved or held after a rename, suspension or deactivation.",
+      "Not confirmed by Twitch. Some names still can't be used because they're reserved or held after a rename, suspension or deactivation. Twitch doesn't offer a precise public availability check, so confirm the name there.",
     profile: "Not found",
-    availability: "Not verified",
+    availability: "Not confirmed by Twitch",
     action: "Confirm on Twitch ↗",
     url: "https://www.twitch.tv/signup",
   },
