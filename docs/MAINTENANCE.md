@@ -4,6 +4,14 @@ Read [AGENTS.md](../AGENTS.md). Maintain
 [rafelolv/TwitchUsernameChecker](https://github.com/rafelolv/TwitchUsernameChecker)
 on `main`. Keep the source readable and the site static.
 
+## Project scope
+
+This is a simple, free tool with no routine update schedule. Frequent releases
+and feature expansion are not planned. The only planned future update is an
+integration with an official Twitch API if Twitch introduces a more accurate
+username-availability check. Keep the current limitations explicit and do not
+promise future API access or a delivery date.
+
 ## Development
 
 Use Node.js 24 (`.nvmrc`) and Python 3 for the optional local server. There are no

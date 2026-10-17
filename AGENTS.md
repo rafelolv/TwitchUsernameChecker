@@ -3,6 +3,10 @@
 Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
 [architecture](docs/ARCHITECTURE.md) before changing behavior.
 
+- Keep the maintenance scope in README: simple and free, with no routine updates
+  planned. The only planned future update depends on Twitch offering an official,
+  more precise username-availability API. Do not promise a timeline or introduce
+  a feature roadmap without the maintainer's instruction.
 - Keep this a small static GitHub Pages site. Runtime code has no npm dependencies,
   remote executable code, telemetry or application backend.
 - Use English for all project documentation, comments, user-facing text, metadata, and commit messages.

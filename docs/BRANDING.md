@@ -20,5 +20,6 @@ and remember that choice. Keep the search card flat, without a drop shadow. Avai
 use green and Unavailable uses red, with uniform borders and no side stripe.
 
 The README uses `docs/images/preview.png` and `docs/images/preview-dark.png` for
-actual interface examples. Refresh them after material visual changes. The
+actual interface examples. The matching `list-preview.png` and
+`list-preview-dark.png` show filters and pagination. Refresh them after material visual changes. The
 project is independent and not affiliated with Twitch.

@@ -5,6 +5,9 @@ Entries remain Unreleased until publication is verified.
 
 ## 1.5.0
 
+- Document the simple/free project scope and the API-dependent future update policy.
+- Refresh the README with release access, current screenshots and list-result previews.
+
 - Add Continue remaining after a stopped list, keeping completed results and navigation.
 - Retry failed names only on an explicit continuation, replacing their rows without duplicates.
 - Discard pending work when the list changes or clears, and keep rate-limit guidance visible.

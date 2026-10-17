@@ -372,7 +372,6 @@ Limitations:
   These presentation changes do not improve Twitch confirmation or throughput.
   Unknown rows remain internally unknown; copying them does not confirm availability.
 
-
 ## 1.4.1 list limit — 2026-10-17
 
 - `npm run check` passes with a 350-name sequential queue and a 351-entry
@@ -383,7 +382,6 @@ Limitations:
   320px layout passed. Refreshed README previews with the new limit.
 - No live 350-name scan was run. This is an application input limit, not a
   Twitch quota or a guarantee that a full list will complete without rate limits.
-
 
 ## 1.5.0 manual list continuation — 2026-10-17
 
@@ -409,3 +407,23 @@ Limitations:
   continuation does not prove Twitch will accept another request immediately.
   Failed requests stop the queue again; there are no automatic retries or timers.
   Pending work exists only in memory and is lost on reload.
+
+## 1.5.0 final release review — 2026-10-17
+
+- `npm run check` passed again before release preparation.
+- On the public GitHub Pages site in temporary Chrome profiles, with intercepted
+  responses: 350-name completion and 351-name rejection; 18 pages with 10 rows on
+  the final page; filter counts, empty results, copying 350 names, page/focus/scroll
+  retention and reset. A separate mixed list verified status grouping and filters.
+- Hosted continuation checks repeated a failure after explicit continuation, for
+  both HTTP 429 and HTTP 500. Each retry stopped again, kept successful results
+  and replaced failed rows on later success without duplicating them. Repeated
+  cancellation and editing/clearing invalidation also passed.
+- Light/dark and 320px layouts passed. Refreshed both main previews and added
+  list-result previews for the README. Screenshot examples use mocked responses.
+- Separate live hosted evidence: a two-name list returned `taken` for `twitch` and
+  `unknown` for `falsiqkdkdk34`. A keyboard-submitted single lookup returned
+  `taken` for `twitch`; actual clipboard write/read passed in the temporary profile.
+- No live 350-name scan, account registration or signed-in rename was attempted.
+  No Firefox, Safari, physical-phone or screen-reader support is claimed.
+  Hosted checks establish current behavior only, not future endpoint support.
