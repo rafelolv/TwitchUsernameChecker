@@ -128,5 +128,13 @@ Limitations:
 - Viewports 320/375/768/1120px had no horizontal overflow or JS errors. Desktop
   and mobile screenshots were inspected. Tests use temporary browser automation
   outside the repository; the production app still has no npm dependencies.
+- Pushed `e8f2b3e` to `main`; the
+  [1.0.2 Pages workflow](https://github.com/rafelolv/TwitchUsernameChecker/actions/runs/38997718732)
+  completed successfully. The public page serves the new logo and native input
+  maximum.
+- Repeated the browser matrix on the hosted site: shared logo/favicon loading,
+  typing/pasting beyond 25, delete/retype/clear counters, saved maximum-length
+  history and all four viewports passed without JS errors or overflow.
 - No new live Twitch availability test was required; the integration and existing
-  availability restriction are unchanged. Deployment verification is pending.
+  availability restriction are unchanged. Published release tags/assets remain
+  intact; version 1.0.2 is deployed to Pages without creating a new tag.

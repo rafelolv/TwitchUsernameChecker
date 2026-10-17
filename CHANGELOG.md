@@ -3,12 +3,19 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
-## Unreleased — 1.0.2
+## 1.0.2
 
 - Replace the generic @ tile with a custom nameplate mark shared by the header,
   favicon and README.
 - Cap username entry at 25 characters and show a live character counter.
 - Add an interface preview and branding guidance to the README and project docs.
+
+Validation:
+
+- Syntax/unit checks and hosted Chrome checks passed, including typing/pasting
+  beyond 25 characters, counter updates, saved history and responsive layouts.
+- Pages deployment completed successfully. Twitch's availability limitation is
+  unchanged.
 
 ## 1.0.1 — 2026-10-16
 
