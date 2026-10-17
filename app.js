@@ -20,11 +20,11 @@ const states = {
     url: "https://www.twitch.tv/settings/profile",
   },
   taken: {
-    label: "Taken",
+    label: "Unavailable",
     title: "Someone's already using this name.",
     description: "Take a look at the profile, or try a different username.",
     profile: "Found",
-    availability: "Taken",
+    availability: "In use",
     action: "View Twitch profile ↗",
   },
   unavailable: {
@@ -87,9 +87,7 @@ function renderResult(item) {
   result.hidden = false;
   result.dataset.state = item.state;
   const heading = element("div", "result-heading");
-  const dot = element("i", `dot ${item.state}`);
-  dot.setAttribute("aria-hidden", "true");
-  heading.append(dot, document.createTextNode(content.label));
+  heading.textContent = content.label;
   const title = element("h3", "", `@${item.username}`);
   const description = element("p");
   description.append(

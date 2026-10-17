@@ -198,3 +198,15 @@ Limitations:
 - Syntax/unit checks passed. One local Chrome smoke check verified the computed
   green label color, settings URL, sign-in text, visible warning and 320px layout
   without JS errors. README preview refreshed. No new live API test was needed.
+
+## 1.0.8 neutral results — 2026-10-17
+
+- Removed tinted result backgrounds, side stripes and status dots, plus the
+  “What the results mean” section and its unused styles. Availability outcomes
+  now use only Available/Unavailable; existing profiles display Unavailable with
+  an In use fact. Request errors remain distinct and unconfirmed warnings remain.
+- Syntax/unit checks passed. A targeted local Chrome check covered both outcome
+  labels, explicit unavailable and failed responses, visible fallback warning,
+  transparent result background, no stripe/dot and a 320px viewport without JS
+  errors. Visually inspected the neutral result; refreshed the README preview.
+- Integration/classification is unchanged; no new live API check was needed.

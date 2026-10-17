@@ -13,6 +13,9 @@ application backend or login.
 
 ![Twitch Username Checker interface](docs/images/preview.png)
 
+Results use two labels, **Available** and **Unavailable**, with no colored status
+panels or dots. Request errors remain separate.
+
 The custom nameplate mark combines a folded corner, username brackets and a mint
 check. One vector is used across the site, favicon and this README. See
 [branding](docs/BRANDING.md) for the source and palette.
@@ -27,14 +30,14 @@ numbers or underscores. Searches are not saved.
 
 | Result                              | Meaning                                                          |
 | ----------------------------------- | ---------------------------------------------------------------- |
-| Taken                               | Twitch returned an existing account.                             |
+| Unavailable · In use                | Twitch returned an existing account.                             |
 | Available · Not confirmed by Twitch | No public profile found; the name may still be reserved or held. |
 | Available · Confirmed by Twitch     | Twitch explicitly confirmed availability.                        |
 | Unavailable                         | Twitch explicitly rejected availability.                         |
 | Failed / rate-limited               | The lookup failed or Twitch limited requests.                    |
 
 **“Available” based on an absent profile is a best-effort label, not a guarantee.**
-It appears in green with **“Not confirmed by Twitch”** and a visible warning.
+It appears as a plain result with **“Not confirmed by Twitch”** and a visible warning.
 Some names cannot be used after a rename, suspension or deactivation even when
 no profile is visible. Twitch does not provide a precise public claimability
 check. Confirm the name on Twitch before choosing it.

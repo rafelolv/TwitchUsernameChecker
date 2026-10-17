@@ -36,18 +36,19 @@ At the maintainer's request, successful absent-profile lookups use **Available**
 as the main display label even when claimability cannot be confirmed. This is a
 presentation decision, not a new detection method.
 
-- Green **Available**, **Confirmed by Twitch**: explicit successful availability
+- **Available**, **Confirmed by Twitch**: explicit successful availability
   `true`, with no account.
 - **Unavailable**: explicit successful availability `false`, with no account.
-- Green **Available**, **Not confirmed by Twitch**: absent public profile with
+- **Available**, **Not confirmed by Twitch**: absent public profile with
   blocked/unconfirmed availability. Always show the visible reservation/accuracy
   warning. Internally this remains `unknown`.
-- **Taken**, **Lookup failed** and **Too many requests** keep their existing meaning.
+- Existing accounts display **Unavailable**, with **In use**.
+- **Lookup failed** and **Too many requests** remain distinct request errors.
 
 Both reported examples can show the same unconfirmed Available label. Some names
 may still be reserved or held after a rename, suspension or deactivation. This
 fallback is not a guarantee, confidence score or probability estimate. Final
 confirmation happens while signed in at [Twitch Settings → Profile](https://www.twitch.tv/settings/profile).
-Both Available labels use green; only the explicit confirmation field establishes
+Both outcomes use neutral text styling; only the explicit confirmation field establishes
 that Twitch returned a positive availability response. A future detection method must demonstrate valid,
 different responses for held and claimable names before it can claim to distinguish them.

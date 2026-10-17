@@ -3,6 +3,11 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.0.8
+
+- Remove colored result panels, dots and side stripes.
+- Remove the result guide and use Available/Unavailable as the two outcome labels.
+
 ## 1.0.7
 
 - Show Available results in green while preserving the unconfirmed warning.

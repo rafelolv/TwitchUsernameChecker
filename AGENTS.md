@@ -29,10 +29,13 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
   boolean with a confirmed absent user permits `available` or `unavailable`.
   Missing profiles, HTTP errors, timeouts and integrity challenges never prove
   availability. Preserve `unknown`, `error` and `rate-limited` states. An absent
-  profile with blocked availability displays “Available” in green, accompanied by
+  profile with blocked availability displays plain “Available”, accompanied by
   “Not confirmed by Twitch” and an always-visible reservation/accuracy warning.
   This is a user-requested presentation fallback; keep its internal `unknown`
-  state and never describe it as confirmed. Color is not evidence of confirmation.
+  state and never describe it as confirmed. Keep results neutral: no colored
+  panels, status dots or decorative side stripes. Use only Available/Unavailable
+  for availability outcomes; request errors remain distinct. Do not restore the
+  “What the results mean” section.
   Errors must not become available. Link confirmation to Twitch Settings → Profile
   and explain that the visitor needs to sign in there.
 - Twitch GraphQL is internal and unsupported. Do not bypass integrity checks,
