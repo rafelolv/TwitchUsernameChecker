@@ -18,10 +18,12 @@ Validation:
 - Two limited live queries were checked; see [validation](docs/VALIDATION.md).
 - GitHub release validation and publication passed. Downloaded ZIP/checksums
   matched the validated local package byte-for-byte.
+- GitHub Pages deployed successfully. Hosted Chrome desktop/mobile checks passed
+  with live taken/unconfirmed results and no JavaScript errors.
 
 Limitations:
 
 - Twitch blocked availability confirmation with `IntegrityCheckFailed`; absent
   profiles are shown as unconfirmed when availability cannot be established.
-- The first Pages deployment failed because Pages was not enabled. Hosted-site
-  verification remains pending activation and a successful deployment.
+- The first Pages deployment required one-time activation of GitHub Actions as
+  the Pages source. Subsequent main pushes deploy automatically after checks.

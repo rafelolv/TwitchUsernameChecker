@@ -60,3 +60,22 @@ Limitations:
   Enabling GitHub Actions as the Pages source and a new deployment are pending.
 - No published tags, release assets or release notes were replaced. Hosted browser
   testing remains pending; the earlier local live-query limits still apply.
+
+## Hosted Pages verification — 2026-10-16
+
+- The maintainer selected GitHub Actions as the repository's Pages source.
+- The [subsequent Pages run](https://github.com/rafelolv/TwitchUsernameChecker/actions/runs/38995646118)
+  completed successfully. The hosted site at
+  [rafelolv.github.io/TwitchUsernameChecker](https://rafelolv.github.io/TwitchUsernameChecker/)
+  returned HTTP 200.
+- Chrome 154.0.8037.97, headless Linux, temporary context: loaded the hosted page
+  at 1440×1000, queried `twitch` live and received `taken`. At mobile viewport
+  375×812, queried `tuc_oct16_739152` live and received `unknown`. No JavaScript
+  errors or horizontal overflow were observed. Desktop/mobile captures were saved
+  temporarily outside the repository.
+- Main pushes run checks and deploy automatically; pull requests validate only.
+  No suggested Jekyll/Static HTML workflow or custom domain is needed.
+- The availability restriction remains: this live test did not establish free
+  versus withheld names. Firefox/Safari, physical devices, screen readers and
+  signed-in Twitch registration/rename remain untested. The release tag and its
+  assets remain unchanged.
