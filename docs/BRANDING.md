@@ -1,23 +1,23 @@
 # Branding
 
-The **nameplate** mark combines a cut-corner tag, open username brackets and a
-mint check. It represents a name being checked rather than Twitch's chat logo.
-It is a project mark, not an indicator that a queried username is available.
+The mark is a custom-drawn **@ whose tail becomes a check**. The @ refers to a
+username; the check refers to looking it up. It identifies the tool, not a
+promise that a particular name is available.
 
-`assets/logo.svg` is the canonical vector. Use that same asset in the header,
-favicon and README. Its paths do not depend on a font. Keep the full 72×72 viewBox
-and surrounding space; do not crop the folded corner or redraw individual uses.
+`assets/logo.svg` is the single source for the header, favicon and README. The
+mark uses paths instead of a font, with an open silhouette and transparent
+background. Keep the full 72×72 viewBox and the connection between spiral and
+check; do not put it back into a document shape or redraw individual placements.
 
-The light palette stays cream (`#f7f6f2`), deep purple (`#452480`) and mint (`#c3e6ad`).
-Use the mint inside the mark, retain text labels for result states and keep the
-rest of the interface restrained. The mark should remain recognizable at favicon
-size. Keep the full project name in the adjacent wordmark or accessible link name.
+The SVG follows the viewer's light/dark preference. Light uses deep purple
+(`#452480`) with a green tail (`#287a4e`); dark uses lavender (`#bf9df2`) and mint
+(`#9ce6b5`). This keeps the open mark readable without a background tile.
+Check the shape at 16px as well as the header's 52px size.
 
-`docs/images/preview.png` shows the actual desktop interface. Refresh it after
-material visual changes. It is documentation only and is not deployed with the
-runtime files. The project is independent and not affiliated with Twitch.
+The website keeps its cream/purple light palette and plum/lavender dark palette.
+It follows `prefers-color-scheme` without a saved preference. Available results
+use green and Unavailable uses red, with uniform borders and no side stripe.
 
-The dark theme uses deep plum surfaces and a lighter purple accent. It follows
-`prefers-color-scheme` without a toggle or saved preference. Available results use
-green and Unavailable results use red in both themes, with uniform thin borders
-and no decorative side stripe. Warnings must remain readable on each surface.
+The README uses `docs/images/preview.png` and `docs/images/preview-dark.png` for
+actual interface examples. Refresh them after material visual changes. The
+project is independent and not affiliated with Twitch.

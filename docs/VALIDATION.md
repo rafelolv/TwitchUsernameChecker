@@ -242,3 +242,14 @@ Limitations:
   This is targeted contrast evidence, not a full accessibility audit.
 - Light/dark screenshots were visually inspected and added to the README's
   theme-aware preview. No live Twitch or physical-device check was repeated.
+
+## 1.1.1 custom @/check mark — 2026-10-17
+
+- Replaced the folded-document mark with a path-drawn @ whose tail forms a green
+  check. One transparent SVG remains the source for the header, favicon and README.
+  Its own light/dark colors follow the viewer's preference. The favicon URL has a
+  semantic cache key for the new mark; the underlying file is unchanged in location.
+- Syntax/unit checks passed. One local Chrome check loaded the shared asset in
+  both page themes, checked 320px layout and observed no JS errors. Updated the
+  light/dark README captures and visually inspected icon proofs at 16/24/32/52/88px.
+- No font-based glyph, duplicate vector source, API or behavior change was added.

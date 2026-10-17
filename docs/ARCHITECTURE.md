@@ -3,15 +3,15 @@
 Static HTML, CSS and native browser modules. No application backend, build tool
 or runtime npm dependency.
 
-| File                          | Responsibility                                                   |
-| ----------------------------- | ---------------------------------------------------------------- |
-| `index.html`                  | Structure, English copy, labels and help.                        |
-| `styles.css`                  | Responsive layout, palette, focus and motion rules.              |
-| `app.js`                      | Form lifecycle, results, clipboard and legacy-history cleanup.   |
-| `checker.js`                  | Normalization, validation, Twitch request and classification.    |
-| `assets/logo.svg`             | Canonical nameplate mark used by the header, favicon and README. |
-| `tests/checker.test.js`       | Network-independent request/classification tests.                |
-| `.github/workflows/pages.yml` | Validation and main-only deployment.                             |
+| File                          | Responsibility                                                 |
+| ----------------------------- | -------------------------------------------------------------- |
+| `index.html`                  | Structure, English copy, labels and help.                      |
+| `styles.css`                  | Responsive layout, palette, focus and motion rules.            |
+| `app.js`                      | Form lifecycle, results, clipboard and legacy-history cleanup. |
+| `checker.js`                  | Normalization, validation, Twitch request and classification.  |
+| `assets/logo.svg`             | Canonical @/check mark used by the header, favicon and README. |
+| `tests/checker.test.js`       | Network-independent request/classification tests.              |
+| `.github/workflows/pages.yml` | Validation and main-only deployment.                           |
 
 Submission trims a leading `@`, lowercases and validates the name before access.
 The input uses native `maxlength="25"` to cap typing/pasting and a visible

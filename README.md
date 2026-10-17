@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.svg" width="88" height="88" alt="Twitch Username Checker logo" />
+  <img src="assets/logo.svg" width="88" height="88" alt="Twitch Username Checker — custom @ with a check-shaped tail" />
 </p>
 
 <h1 align="center">Twitch Username Checker</h1>

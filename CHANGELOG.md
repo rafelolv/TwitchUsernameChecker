@@ -3,6 +3,11 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.1.1
+
+- Replace the document-style icon with a custom @ whose tail forms a check,
+  with light/dark colors shared by the header, favicon and README.
+
 ## 1.1.0
 
 - Follow the browser’s light/dark preference automatically, including live theme changes.

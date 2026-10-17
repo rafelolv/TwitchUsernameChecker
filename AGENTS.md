@@ -23,9 +23,10 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
 - Follow the browser/system theme with `prefers-color-scheme`. Keep both themes
   readable, including result warnings, input focus and error states. No theme
   preference is stored; theme changes must apply without a reload.
-- `assets/logo.svg` is the canonical nameplate mark for the header, favicon and
-  README. Preserve its cut corner, brackets and mint check; do not maintain
-  independently drawn copies or replace it with a generic character/tile.
+- `assets/logo.svg` is the canonical custom @/check mark for the header, favicon and
+  README. Preserve the drawn @ spiral and its green check-shaped tail; do not
+  maintain independently drawn copies or replace it with a font character/tile.
+  Keep its light/dark SVG colors readable at favicon size.
 - The username input must enforce its native 25-character maximum while typing
   and pasting. Keep the counter synchronized and retain request-side validation.
 - `checker.js` owns requests and classification. Only a successful availability
