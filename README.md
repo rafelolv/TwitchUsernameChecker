@@ -29,6 +29,11 @@
 ## Using it
 
 Enter a username and click **Check username**, or press Enter.
+For several names, open **Check a list**, paste up to **100 names** (one per line,
+comma or space separated), then click **Check list**. Results appear as each name
+is checked. Duplicates are skipped. Use **Stop checking** to cancel; the queue also
+stops if Twitch limits requests or a lookup fails. A full list takes a few minutes.
+
 Use 4–25 letters, numbers or underscores. The site follows your browser’s light
 or dark theme. Use the sun/moon button at the top to switch; it remembers your choice.
 

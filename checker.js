@@ -63,3 +63,67 @@ export async function checkUsername(
   const payload = await response.json();
   return { username, state: classifyResponse(payload), checkedAt: Date.now() };
 }
+
+export function parseUsernames(value) {
+  const names = value
+    .split(/[\s,]+/)
+    .filter(Boolean)
+    .map(normalizeUsername);
+  if (!names.length) throw new Error("Enter at least one username.");
+  if (names.length > 100) throw new Error("Use up to 100 names per list.");
+  for (const name of names) {
+    const error = validateUsername(name);
+    if (error) throw new Error(`@${name}: ${error}`);
+  }
+  return [...new Set(names)];
+}
+
+function pause(ms, signal) {
+  return new Promise((resolve) => {
+    const done = () => {
+      clearTimeout(timer);
+      signal?.removeEventListener("abort", done);
+      resolve();
+    };
+    const timer = setTimeout(done, ms);
+    signal?.addEventListener("abort", done, { once: true });
+    if (signal?.aborted) done();
+  });
+}
+
+// A user-started queue: one request at a time, no retries, stop on failure.
+export async function checkUsernames(
+  value,
+  { signal, onResult = () => {}, fetcher = fetch, intervalMs = 1000 } = {},
+) {
+  const names = parseUsernames(value);
+  let completed = 0;
+  for (const username of names) {
+    if (signal?.aborted)
+      return { reason: "cancelled", completed, total: names.length };
+    const controller = new AbortController();
+    const abort = () => controller.abort();
+    signal?.addEventListener("abort", abort, { once: true });
+    const timeout = setTimeout(abort, 12000);
+    let item;
+    try {
+      item = await checkUsername(username, {
+        fetcher,
+        signal: controller.signal,
+      });
+    } catch {
+      item = { username, state: "error", checkedAt: Date.now() };
+    } finally {
+      clearTimeout(timeout);
+      signal?.removeEventListener("abort", abort);
+    }
+    if (signal?.aborted)
+      return { reason: "cancelled", completed, total: names.length };
+    completed++;
+    onResult(item, completed, names.length);
+    if (item.state === "error" || item.state === "rate-limited")
+      return { reason: item.state, completed, total: names.length };
+    if (completed < names.length) await pause(intervalMs, signal);
+  }
+  return { reason: "complete", completed, total: names.length };
+}

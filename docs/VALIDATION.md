@@ -271,3 +271,28 @@ Limitations:
 
 - Changed the main heading to “Is that name available?”. Syntax/unit checks and
   a local Chrome light/dark check at 320px passed; refreshed both README previews.
+
+## 1.3.0 list checks — 2026-10-17
+
+### Automated and mocked browser evidence
+
+- `npm run check` passes, including a 100-name sequential queue, validation before
+  network access, normalization/deduplication, error/429 stopping and cancellation
+  during a request or between requests. Unknown results remain internally unknown.
+- Temporary Chrome profile on the actual local page, with intercepted Twitch
+  responses: reject 101 entries and malformed names before requests; skip
+  duplicates; lock single search while a list runs; show mixed result rows and
+  the uncertainty warning; stop on errors/429; cancel a 100-name list; clear input;
+  and run single search afterward. No browser script errors were recorded.
+- Inspected desktop and 320px screenshots in light/dark themes. No horizontal
+  overflow. README previews refreshed with the collapsed list option.
+
+### Limited live evidence
+
+- Temporary Chrome profile on the local page, without interception: a two-name
+  list completed in order. `twitch` returned internal `taken`; `falsiqkdkdk34`
+  returned internal `unknown`, displayed as Available / Not confirmed by Twitch.
+- This verifies two live responses, not sustained 100-name support or claimability.
+  No live 100-name scan was run. Twitch may limit or refuse subsequent requests;
+  the queue stops and leaves remaining names unchecked. Hosted deployment is a
+  separate check after pushing.

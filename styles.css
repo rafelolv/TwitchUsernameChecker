@@ -652,3 +652,141 @@ details a {
     height: 32px;
   }
 }
+
+/* The list stays secondary to the single-name search. */
+.list-checker {
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  border-bottom: 0;
+}
+.list-checker summary {
+  color: var(--purple);
+  font-size: 13px;
+}
+.list-checker summary .list-limit {
+  color: var(--muted);
+  font-size: 11px;
+  transform: none;
+}
+.list-checker label {
+  font-size: 14px;
+}
+.list-checker p {
+  margin: 0 0 12px;
+}
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 130px;
+  padding: 12px;
+  border: 1px solid var(--input-line);
+  border-radius: 5px;
+  background: var(--input-bg);
+  color: var(--ink);
+  font:
+    14px/1.6 "Space Grotesk",
+    sans-serif;
+}
+textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+textarea[aria-invalid="true"] {
+  border-color: var(--red);
+}
+.list-toolbar,
+.list-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.list-toolbar {
+  margin: 10px 0 18px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.text-button {
+  background: transparent;
+  border: 0;
+  padding: 5px 0;
+  font-size: 12px;
+  color: var(--purple);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.list-actions {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.list-actions .submit-button {
+  min-height: 42px;
+}
+#list-error {
+  margin-bottom: 16px;
+}
+#list-progress {
+  margin: 20px 0 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.list-warning {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+.list-results {
+  max-height: 360px;
+  overflow: auto;
+  border-radius: 5px;
+}
+.list-results:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+#list-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.list-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--result-neutral-bg);
+  color: var(--result-neutral-ink);
+}
+.list-result[data-state="available"],
+.list-result[data-state="unknown"] {
+  background: var(--available-bg);
+  color: var(--available-ink);
+  border-color: var(--available-line);
+}
+.list-result[data-state="taken"],
+.list-result[data-state="unavailable"] {
+  background: var(--unavailable-bg);
+  color: var(--unavailable-ink);
+  border-color: var(--unavailable-line);
+}
+.list-name {
+  font:
+    500 13px "Space Grotesk",
+    sans-serif;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.list-status {
+  display: grid;
+  gap: 3px;
+  font-size: 12px;
+}
+.list-status span {
+  font-size: 10px;
+}

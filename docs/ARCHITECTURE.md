@@ -3,16 +3,16 @@
 Static HTML, CSS and native browser modules. No application backend, build tool
 or runtime npm dependency.
 
-| File                          | Responsibility                                                  |
-| ----------------------------- | --------------------------------------------------------------- |
-| `index.html`                  | Structure, English copy, labels and help.                       |
-| `theme.js`                    | Early theme selection, system preference and the header toggle. |
-| `styles.css`                  | Responsive layout, palette, focus and motion rules.             |
-| `app.js`                      | Form lifecycle, results, clipboard and legacy-history cleanup.  |
-| `checker.js`                  | Normalization, validation, Twitch request and classification.   |
-| `assets/logo.svg`             | Canonical @/check mark used by the header, favicon and README.  |
-| `tests/checker.test.js`       | Network-independent request/classification tests.               |
-| `.github/workflows/pages.yml` | Validation and main-only deployment.                            |
+| File                          | Responsibility                                                        |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `index.html`                  | Structure, English copy, labels and help.                             |
+| `theme.js`                    | Early theme selection, system preference and the header toggle.       |
+| `styles.css`                  | Responsive layout, palette, focus and motion rules.                   |
+| `app.js`                      | Single/list form lifecycle, results, clipboard and history cleanup.   |
+| `checker.js`                  | Normalization, validation, Twitch requests, queue and classification. |
+| `assets/logo.svg`             | Canonical @/check mark used by the header, favicon and README.        |
+| `tests/checker.test.js`       | Network-independent request/classification tests.                     |
+| `.github/workflows/pages.yml` | Validation and main-only deployment.                                  |
 
 Submission trims a leading `@`, lowercases and validates the name before access.
 The input uses native `maxlength="25"` to cap typing/pasting and a visible
@@ -73,3 +73,19 @@ falls back to memory. System changes apply automatically until a manual override
 CSS variables use the root `data-theme`; no reload is needed. The early script
 also updates browser theme-color, while color-scheme styles native controls and
 the shared SVG logo. Include `theme.js` in Pages and release packages.
+
+## List checks
+
+The secondary “Check a list” disclosure accepts up to 100 names separated by
+whitespace or commas. All entries must pass the same 4–25 character validation
+before any request is sent. Case-insensitive duplicates are checked once; the
+100-entry limit applies before deduplication. No entry is silently truncated.
+
+`checker.js` runs a user-started sequential queue with a one-second pause between
+requests, the same 12-second per-request timeout and no retries. Both forms share
+a busy lock, so they cannot overlap. Stop aborts the active request or pause;
+completed rows stay visible. Any lookup error or rate limit stops the queue and
+leaves remaining entries unchecked. Each row preserves the existing internal
+classification, with a visible “Not confirmed by Twitch” label for unknown names
+and an always-visible shared reservation warning. Lists and results stay in memory
+only. Closing the disclosure does not cancel a running list; use Stop checking.

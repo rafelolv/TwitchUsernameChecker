@@ -3,6 +3,12 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.3.0
+
+- Add an optional list check for up to 100 names, with sequential results and a stop button.
+- Validate the whole list, skip duplicates and stop on failed lookups or rate limits.
+- Keep unconfirmed availability labels and the Twitch reservation warning visible.
+
 ## 1.2.1
 
 - Replace the main heading with “Is that name available?” for a clearer introduction.

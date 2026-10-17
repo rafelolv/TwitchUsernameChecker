@@ -151,6 +151,73 @@
           aria-atomic="true"
           hidden
         ></div>
+        <details class="list-checker" id="list-checker">
+          <summary>
+            Check a list <span class="list-limit">Up to 100 names</span>
+          </summary>
+          <form id="list-form" novalidate>
+            <label for="usernames">Usernames</label>
+            <p id="list-help">
+              One per line, or separated by commas or spaces. Duplicates are
+              checked once.
+            </p>
+            <textarea
+              id="usernames"
+              rows="5"
+              placeholder="firstname
+secondname
+thirdname"
+              autocomplete="off"
+              autocapitalize="none"
+              spellcheck="false"
+              aria-describedby="list-help list-error"
+            ></textarea>
+            <div class="list-toolbar">
+              <span id="list-count">0 / 100 names</span>
+              <button type="button" class="text-button" id="list-clear">
+                Clear list
+              </button>
+            </div>
+            <p id="list-error" class="input-error" role="alert" hidden></p>
+            <div class="list-actions">
+              <button type="submit" class="submit-button" id="list-submit">
+                Check list
+              </button>
+              <button type="button" class="text-button" id="list-stop" hidden>
+                Stop checking
+              </button>
+            </div>
+          </form>
+          <div id="list-output" hidden>
+            <p
+              id="list-progress"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></p>
+            <p class="list-warning">
+              “Available” can mean no public profile was found. Names may still
+              be reserved or held after a rename, suspension or deactivation.
+              Twitch doesn't offer a precise public availability check. Sign in
+              to
+              <a
+                href="https://www.twitch.tv/settings/profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Twitch Settings → Profile ↗</a
+              >
+              to confirm.
+            </p>
+            <div
+              class="list-results"
+              tabindex="0"
+              role="region"
+              aria-label="List results"
+            >
+              <ul id="list-results"></ul>
+            </div>
+          </div>
+        </details>
         <div class="card-note">
           <span aria-hidden="true">ⓘ</span>
           <p>

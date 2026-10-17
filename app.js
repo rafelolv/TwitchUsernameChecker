@@ -2,6 +2,8 @@ import {
   normalizeUsername,
   validateUsername,
   checkUsername,
+  parseUsernames,
+  checkUsernames,
 } from "./checker.js";
 
 const $ = (selector) => document.querySelector(selector);
@@ -174,6 +176,7 @@ form.addEventListener("submit", async (event) => {
   input.value = username;
   syncInput();
   busy = true;
+  setListBusy(true);
   input.readOnly = true;
   $("#clear-input").hidden = true;
   $("#submit-button").disabled = true;
@@ -197,6 +200,7 @@ form.addEventListener("submit", async (event) => {
   } finally {
     clearTimeout(timeout);
     busy = false;
+    setListBusy(false);
     input.readOnly = false;
     $("#submit-button").disabled = false;
     $("#submit-label").textContent = "Check username";
@@ -204,4 +208,105 @@ form.addEventListener("submit", async (event) => {
     result.setAttribute("aria-busy", "false");
   }
   renderResult(item);
+});
+
+const listInput = $("#usernames");
+let listController;
+
+function setListBusy(value) {
+  listInput.readOnly = value;
+  $("#list-submit").disabled = value;
+  $("#list-clear").disabled = value;
+}
+
+function syncList() {
+  const count = listInput.value.split(/[\s,]+/).filter(Boolean).length;
+  $("#list-count").textContent = `${count} / 100 names`;
+  listInput.removeAttribute("aria-invalid");
+  $("#list-error").hidden = true;
+  if (!busy) $("#list-output").hidden = true;
+}
+listInput.addEventListener("input", syncList);
+$("#list-clear").addEventListener("click", () => {
+  listInput.value = "";
+  $("#list-results").replaceChildren();
+  syncList();
+  listInput.focus();
+});
+$("#list-stop").addEventListener("click", () => listController?.abort());
+
+function renderListResult(item) {
+  const content = states[item.state];
+  const row = element("li", "list-result");
+  row.dataset.state = item.state;
+  const name = element("a", "list-name", `@${item.username}`);
+  name.href =
+    content.url || `https://www.twitch.tv/${encodeURIComponent(item.username)}`;
+  name.target = "_blank";
+  name.rel = "noopener noreferrer";
+  name.setAttribute(
+    "aria-label",
+    `@${item.username}: ${content.action.replace(" ↗", "")}`,
+  );
+  const status = element("div", "list-status");
+  status.append(element("strong", "", content.label));
+  if (content.availability)
+    status.append(element("span", "", content.availability));
+  row.append(name, status);
+  $("#list-results").append(row);
+}
+
+$("#list-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (busy) return;
+  let names;
+  try {
+    names = parseUsernames(listInput.value);
+  } catch (error) {
+    $("#list-output").hidden = true;
+    $("#list-error").textContent = error.message;
+    $("#list-error").hidden = false;
+    listInput.setAttribute("aria-invalid", "true");
+    listInput.focus();
+    return;
+  }
+  busy = true;
+  setListBusy(true);
+  input.readOnly = true;
+  $("#submit-button").disabled = true;
+  $("#clear-input").hidden = true;
+  $("#list-stop").hidden = false;
+  $("#list-error").hidden = true;
+  listInput.removeAttribute("aria-invalid");
+  $("#list-results").replaceChildren();
+  $("#list-output").hidden = false;
+  const progress = $("#list-progress");
+  progress.textContent = `Checking 0 of ${names.length}… You can stop at any time.`;
+  listController = new AbortController();
+  try {
+    const summary = await checkUsernames(listInput.value, {
+      signal: listController.signal,
+      onResult(item, completed, total) {
+        renderListResult(item);
+        progress.textContent = `Checked ${completed} of ${total}…`;
+      },
+    });
+    const messages = {
+      complete: "Done.",
+      cancelled: "Stopped. Remaining names weren't checked.",
+      error:
+        "Stopped because a lookup failed. Remaining names weren't checked.",
+      "rate-limited":
+        "Twitch is limiting requests. Stopped; remaining names weren't checked. Try again later.",
+    };
+    progress.textContent = `${messages[summary.reason]} Checked ${summary.completed} of ${summary.total}.`;
+  } finally {
+    busy = false;
+    listController = undefined;
+    setListBusy(false);
+    input.readOnly = false;
+    $("#submit-button").disabled = false;
+    $("#clear-input").hidden = !input.value;
+    $("#list-stop").hidden = true;
+  }
 });

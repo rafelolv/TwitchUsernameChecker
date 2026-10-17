@@ -49,7 +49,11 @@ Maintained by rafelolv. Read [maintenance](docs/MAINTENANCE.md) and
   embed credentials, promise availability or predict name-release dates. A proxy
   alone does not solve the integrity restriction.
 - Validate before requests. Preserve one lookup in flight, the 12-second timeout
-  and an explicit action per lookup. No bulk scans, polling or automatic retries.
+  and an explicit action per lookup or list. A user-started list may contain up to
+  100 names, validated before any request and deduplicated. Keep one request in
+  flight across both modes, pause one second between list requests, allow immediate
+  cancellation and stop the queue on errors or rate limits. No background scans,
+  polling, automatic retries or saved lists.
 - Render through DOM/text APIs, never dynamic HTML parsing. Do not save searches
   or reintroduce recent-search UI. Remove only the legacy `tuc:history:v1` key on
   load; tolerate unavailable storage. Do not log raw API bodies or exceptions.
