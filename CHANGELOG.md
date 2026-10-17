@@ -3,6 +3,11 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.0.9
+
+- Highlight Available with soft sage and Unavailable with muted clay, without
+  side stripes or status dots. Keep the uncertainty warning visible.
+
 ## 1.0.8
 
 - Remove colored result panels, dots and side stripes.

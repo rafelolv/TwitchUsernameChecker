@@ -9,6 +9,12 @@
   --purple-light: #eee8f5;
   --line: #dedbe2;
   --red: #bb5264;
+  --available-bg: #edf5ee;
+  --available-ink: #285f40;
+  --available-line: #ccdfd0;
+  --unavailable-bg: #f8efeb;
+  --unavailable-ink: #864c3a;
+  --unavailable-line: #e7d5cc;
   font-family: "DM Sans", sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -308,18 +314,35 @@ kbd {
   margin: 0;
 }
 .result {
+  --result-bg: #f6f4f1;
+  --result-accent: #675e55;
+  --result-line: var(--line);
   margin-top: 22px;
-  padding: 22px 0 0;
-  border-top: 1px solid var(--line);
+  padding: 22px;
+  background: var(--result-bg);
+  border: 1px solid var(--result-line);
+  border-radius: 8px;
   overflow-wrap: anywhere;
+}
+.result[data-state="available"],
+.result[data-state="unknown"] {
+  --result-bg: var(--available-bg);
+  --result-accent: var(--available-ink);
+  --result-line: var(--available-line);
+}
+.result[data-state="taken"],
+.result[data-state="unavailable"] {
+  --result-bg: var(--unavailable-bg);
+  --result-accent: var(--unavailable-ink);
+  --result-line: var(--unavailable-line);
 }
 .result-heading {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--result-accent);
 }
 .result h3 {
   font:
@@ -339,13 +362,13 @@ kbd {
   gap: 12px;
   margin: 16px 0;
   padding-block: 12px;
-  border-block: 1px solid #45248020;
+  border-block: 1px solid var(--result-line);
 }
 .result .result-caveat {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
+  border-top: 1px solid var(--result-line);
+  color: #5d5853;
   font-size: 12px;
 }
 .result-facts:empty {
@@ -370,7 +393,7 @@ kbd {
 .result-actions a,
 .result-actions button {
   font-size: 12px;
-  color: var(--purple);
+  color: var(--result-accent);
   font-weight: 600;
 }
 .result-actions button {
@@ -536,6 +559,9 @@ details a {
   }
   .result h3 {
     font-size: 22px;
+  }
+  .result {
+    padding: 16px;
   }
   .result p {
     font-size: 12px;

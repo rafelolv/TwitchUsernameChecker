@@ -210,3 +210,13 @@ Limitations:
   transparent result background, no stripe/dot and a 320px viewport without JS
   errors. Visually inspected the neutral result; refreshed the README preview.
 - Integration/classification is unchanged; no new live API check was needed.
+
+## 1.0.9 soft result colors — 2026-10-17
+
+- Available uses soft sage, Unavailable uses muted clay, and request errors keep
+  a neutral background. Each panel has the same thin outline on all four sides;
+  no decorative side stripe or status dot. Warning text remains visible.
+- Syntax/unit checks passed. One local Chrome smoke check verified both outcome
+  colors, uniform 1px borders, labels, fallback warnings, failed requests and a
+  320px layout without JS errors. Visually inspected the result and refreshed the
+  README with an example response. No new live API check was needed.

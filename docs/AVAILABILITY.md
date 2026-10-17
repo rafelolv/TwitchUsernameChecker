@@ -49,6 +49,6 @@ Both reported examples can show the same unconfirmed Available label. Some names
 may still be reserved or held after a rename, suspension or deactivation. This
 fallback is not a guarantee, confidence score or probability estimate. Final
 confirmation happens while signed in at [Twitch Settings → Profile](https://www.twitch.tv/settings/profile).
-Both outcomes use neutral text styling; only the explicit confirmation field establishes
+Outcome colors are presentation only; the explicit confirmation field establishes
 that Twitch returned a positive availability response. A future detection method must demonstrate valid,
 different responses for held and claimable names before it can claim to distinguish them.

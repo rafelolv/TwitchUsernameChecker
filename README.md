@@ -8,7 +8,7 @@ Check a name before changing your Twitch username.
 
 [**Open the checker**](https://rafelolv.github.io/TwitchUsernameChecker/)
 
-![Twitch Username Checker](docs/images/preview.png)
+![Twitch Username Checker showing an example result](docs/images/preview.png)
 
 ## How to use it
 
