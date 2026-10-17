@@ -1,0 +1,22 @@
+name: Bug report
+description: Report a reproducible Twitch Username Checker problem.
+body:
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, operating system and app URL or commit
+      placeholder: Chrome 154, Linux, local checkout at <commit>
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps, expected behavior and actual behavior
+      description: Use a non-private example. A missing profile does not prove availability.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Result state and relevant evidence
+      description: State whether responses were live or simulated. Remove private names and history; never include cookies, tokens, authorization headers or raw API bodies.

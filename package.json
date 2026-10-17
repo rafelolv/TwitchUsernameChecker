@@ -1,0 +1,12 @@
+{
+  "name": "twitch-username-checker",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 5173 --bind 127.0.0.1",
+    "test": "node --test",
+    "check": "node --check app.js && node --check checker.js && node --check tests/checker.test.js && node --test"
+  }
+}

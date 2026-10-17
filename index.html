@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#452480" />
+    <meta
+      name="description"
+      content="Consulte um nickname na Twitch. Descubra se já existe um perfil e confira a disponibilidade do nome, sem confundir perfil inexistente com nome livre."
+    />
+    <title>Twitch Username Checker — seu próximo @ começa aqui</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header wrap">
+      <a class="brand" href="./" aria-label="Twitch Username Checker, início"
+        ><span class="brand-mark" aria-hidden="true">@<span></span></span
+        ><span
+          >Twitch Username<br /><strong>Checker</strong
+          ><span class="brand-period">.</span></span
+        ></a
+      >
+      <a
+        class="source-link"
+        href="https://github.com/rafelolv/TwitchUsernameChecker"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Código aberto <span aria-hidden="true">↗</span></a
+      >
+    </header>
+
+    <main class="wrap">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow"><span></span> MENOS TENTATIVAS. MAIS IDENTIDADE.</p>
+        <h1 id="hero-title">
+          Achou o nome.<br /><span>Será que tá livre?</span>
+        </h1>
+        <p class="intro">
+          Seu próximo canal começa com um @.<br />Consulte o nickname que você
+          tem em mente.
+        </p>
+      </section>
+
+      <section class="checker" aria-label="Consultar nickname">
+        <div class="card-heading">
+          <span class="mini-label">CONSULTA DE NICKNAME</span
+          ><span class="card-index" aria-hidden="true">01 / @</span>
+        </div>
+        <form id="check-form" novalidate>
+          <label for="username">Qual vai ser o seu nome?</label>
+          <div class="search-row">
+            <div class="input-wrap">
+              <span class="input-prefix" aria-hidden="true">twitch.tv/</span
+              ><input
+                id="username"
+                name="username"
+                type="text"
+                placeholder="seunickname"
+                autocomplete="off"
+                autocapitalize="none"
+                spellcheck="false"
+                aria-describedby="input-help input-error"
+                required
+              /><button
+                id="clear-input"
+                class="clear-input"
+                type="button"
+                aria-label="Apagar nickname"
+                hidden
+              >
+                ×
+              </button>
+            </div>
+            <button class="submit-button" id="submit-button" type="submit">
+              <span id="submit-label">Verificar nome</span
+              ><span class="submit-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <div class="input-meta">
+            <p id="input-help">4–25 caracteres · letras, números e _</p>
+            <span class="enter-hint" aria-hidden="true"
+              >ou pressione <kbd>Enter ↵</kbd></span
+            >
+          </div>
+          <p id="input-error" class="input-error" role="alert" hidden></p>
+        </form>
+        <div
+          id="result"
+          class="result"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          hidden
+        ></div>
+        <div class="card-note">
+          <span aria-hidden="true">ⓘ</span>
+          <p>
+            Um perfil que não existe pode ter um nome indisponível.<br
+              class="desktop-break"
+            />
+            A confirmação final é sempre da Twitch.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="history-section"
+        class="history"
+        aria-labelledby="history-title"
+        hidden
+      >
+        <div class="section-heading">
+          <h2 id="history-title">Suas últimas buscas</h2>
+          <button id="clear-history" class="text-button" type="button">
+            Limpar histórico
+          </button>
+        </div>
+        <p class="history-note">
+          Salvas apenas neste navegador. Toque para consultar de novo.
+        </p>
+        <ul id="history-list"></ul>
+      </section>
+
+      <section class="explainer" aria-labelledby="explainer-title">
+        <div class="section-heading">
+          <h2 id="explainer-title">Cada resultado, sem mistério.</h2>
+          <span aria-hidden="true">↓</span>
+        </div>
+        <div class="status-guide">
+          <article>
+            <span class="status-name"
+              ><i class="dot available"></i>Disponível</span
+            >
+            <p>
+              A Twitch confirmou que o nome está livre no momento da consulta.
+            </p>
+          </article>
+          <article>
+            <span class="status-name"><i class="dot taken"></i>Em uso</span>
+            <p>
+              Já existe uma conta com esse nome. Hora de testar uma nova ideia.
+            </p>
+          </article>
+          <article>
+            <span class="status-name"
+              ><i class="dot unavailable"></i>Indisponível</span
+            >
+            <p>
+              Sem perfil encontrado, mas a Twitch não liberou o nome para uso.
+            </p>
+          </article>
+        </div>
+        <p class="unknown-note">
+          Sem uma resposta conclusiva da Twitch, mostramos
+          <strong>“não confirmado”</strong>.
+        </p>
+      </section>
+
+      <section class="questions" aria-label="Dúvidas frequentes">
+        <details>
+          <summary>
+            O perfil não existe. Por que o nome não está livre?<span
+              aria-hidden="true"
+              >+</span
+            >
+          </summary>
+          <p>
+            Um nome sem perfil visível ainda pode estar retido ou restrito pela
+            Twitch. A consulta não informa o motivo nem uma data de liberação.
+            Confira a
+            <a
+              href="https://help.twitch.tv/s/article/username-rename-and-recycling-policies?language=pt_BR"
+              target="_blank"
+              rel="noopener noreferrer"
+              >política de nomes da Twitch ↗</a
+            >.
+          </p>
+        </details>
+        <details>
+          <summary>
+            Como confirmo que posso usar o nome?<span aria-hidden="true"
+              >+</span
+            >
+          </summary>
+          <p>
+            Confira o nome no formulário de cadastro da Twitch ou, se já tem uma
+            conta, na edição do nome de usuário em Configurações → Perfil. A
+            disponibilidade pode mudar entre a consulta e o cadastro.
+          </p>
+        </details>
+        <details>
+          <summary>
+            Preciso fazer login aqui?<span aria-hidden="true">+</span>
+          </summary>
+          <p>
+            Não. Esta ferramenta não pede senha nem acesso à sua conta. O
+            nickname consultado é enviado à Twitch; o histórico fica somente
+            neste navegador e pode ser apagado a qualquer momento.
+          </p>
+        </details>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <p>Um bom nome é só o começo<span class="brand-period">.</span></p>
+      <div>
+        <span>Projeto independente. Sem vínculo com a Twitch.</span
+        ><a
+          href="https://github.com/rafelolv"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Feito por rafelolv ↗</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
