@@ -371,3 +371,15 @@ Limitations:
 - All new list-navigation checks used mocked responses, not a live 100-name scan.
   These presentation changes do not improve Twitch confirmation or throughput.
   Unknown rows remain internally unknown; copying them does not confirm availability.
+
+
+## 1.4.1 list limit — 2026-10-17
+
+- `npm run check` passes with a 350-name sequential queue and a 351-entry
+  rejection boundary. Request timing, cancellation and error handling are unchanged.
+- Temporary Chrome profile, mocked Twitch responses: 351 names rejected before
+  any request; 350 names completed with accurate counters, 18 pages, 10 rows on
+  the last page and copying all 350 Available names across pages. Both themes and
+  320px layout passed. Refreshed README previews with the new limit.
+- No live 350-name scan was run. This is an application input limit, not a
+  Twitch quota or a guarantee that a full list will complete without rate limits.

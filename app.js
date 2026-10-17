@@ -4,6 +4,7 @@ import {
   checkUsername,
   parseUsernames,
   checkUsernames,
+  MAX_LIST_SIZE,
 } from "./checker.js";
 
 const $ = (selector) => document.querySelector(selector);
@@ -323,7 +324,7 @@ function setListBusy(value) {
 
 function syncList() {
   const count = listInput.value.split(/[\s,]+/).filter(Boolean).length;
-  $("#list-count").textContent = `${count} / 100 names`;
+  $("#list-count").textContent = `${count} / ${MAX_LIST_SIZE} names`;
   listInput.removeAttribute("aria-invalid");
   $("#list-error").hidden = true;
   if (!busy) $("#list-output").hidden = true;

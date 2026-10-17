@@ -76,10 +76,10 @@ the shared SVG logo. Include `theme.js` in Pages and release packages.
 
 ## List checks
 
-The secondary “Check a list” disclosure accepts up to 100 names separated by
+The secondary “Check a list” disclosure accepts up to 350 names separated by
 whitespace or commas. All entries must pass the same 4–25 character validation
 before any request is sent. Case-insensitive duplicates are checked once; the
-100-entry limit applies before deduplication. No entry is silently truncated.
+350-entry limit applies before deduplication. No entry is silently truncated.
 
 `checker.js` runs a user-started sequential queue without an artificial pause
 between requests, with the same 12-second per-request timeout and no retries. Both forms share

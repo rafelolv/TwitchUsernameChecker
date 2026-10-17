@@ -17,19 +17,19 @@ test("list input normalizes and deduplicates without silently truncating names",
     "abc",
     "a".repeat(26),
     "fine_name bad-name",
-    Array(101).fill("name").join("\n"),
+    Array(351).fill("name").join("\n"),
   ]) {
     assert.throws(() => parseUsernames(value));
   }
 });
 
-test("100 names run sequentially and preserve unconfirmed availability", async () => {
+test("350 names run sequentially and preserve unconfirmed availability", async () => {
   let active = 0;
   let peak = 0;
   let calls = 0;
   const results = [];
   const summary = await checkUsernames(
-    Array.from({ length: 100 }, (_, i) => `name${i}`).join("\n"),
+    Array.from({ length: 350 }, (_, i) => `name${i}`).join("\n"),
     {
       fetcher: async () => {
         calls++;
@@ -42,11 +42,11 @@ test("100 names run sequentially and preserve unconfirmed availability", async (
       onResult: (item) => results.push(item),
     },
   );
-  assert.equal(calls, 100);
+  assert.equal(calls, 350);
   assert.equal(peak, 1);
-  assert.equal(results.length, 100);
+  assert.equal(results.length, 350);
   assert.ok(results.every((item) => item.state === "unknown"));
-  assert.deepEqual(summary, { reason: "complete", completed: 100, total: 100 });
+  assert.deepEqual(summary, { reason: "complete", completed: 350, total: 350 });
 });
 
 test("all validation happens before any list request", async () => {

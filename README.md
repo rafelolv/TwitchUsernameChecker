@@ -29,7 +29,7 @@
 ## Using it
 
 Enter a username and click **Check username**, or press Enter.
-For several names, open **Check a list**, paste up to **100 names** (one per line,
+For several names, open **Check a list**, paste up to **350 names** (one per line,
 comma or space separated), then click **Check list**. Results appear as each name
 is checked. Duplicates are skipped. Use **Stop checking** to cancel; the queue also
 stops if Twitch limits requests or a lookup fails. Names are checked one at a time, as soon as Twitch responds.

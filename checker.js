@@ -1,6 +1,7 @@
 // The web client's public identifier is not a secret or an OAuth credential.
 // This internal Twitch API is unsupported and may change or refuse requests.
 const ENDPOINT = "https://gql.twitch.tv/gql";
+export const MAX_LIST_SIZE = 350;
 const CLIENT_ID = "kimne78kx3ncx6brgo4mv6wki5h1ko";
 
 export function normalizeUsername(value) {
@@ -70,7 +71,8 @@ export function parseUsernames(value) {
     .filter(Boolean)
     .map(normalizeUsername);
   if (!names.length) throw new Error("Enter at least one username.");
-  if (names.length > 100) throw new Error("Use up to 100 names per list.");
+  if (names.length > MAX_LIST_SIZE)
+    throw new Error(`Use up to ${MAX_LIST_SIZE} names per list.`);
   for (const name of names) {
     const error = validateUsername(name);
     if (error) throw new Error(`@${name}: ${error}`);

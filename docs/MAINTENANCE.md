@@ -23,7 +23,7 @@ Never infer availability from an absent profile or integrity error. For UI
 changes, check keyboard submit, validation, loading, results, copying,
 clearing and narrow layouts in a disposable browser profile. For list changes,
 verify full-list validation, deduplication, the shared busy lock, cancellation,
-progress and stopping on errors/rate limits. Test 100-name queues with mocked
+progress and stopping on errors/rate limits. Test 350-name queues with mocked
 responses; keep live requests limited. Simulate responses
 for deterministic states and make limited live queries separately. Record actual
 checks, browsers and untested cases in [validation](VALIDATION.md).
