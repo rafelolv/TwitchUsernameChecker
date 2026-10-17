@@ -2,39 +2,55 @@
   <img src="assets/logo.svg" width="88" height="88" alt="Twitch Username Checker logo" />
 </p>
 
-# Twitch Username Checker
+<h1 align="center">Twitch Username Checker</h1>
 
-Check a name before changing your Twitch username.
+<p align="center">Check a name before changing your Twitch username.</p>
 
-[**Open the checker**](https://rafelolv.github.io/TwitchUsernameChecker/)
+<p align="center">
+  <a href="https://rafelolv.github.io/TwitchUsernameChecker/"><img src="docs/buttons/open-checker.svg" width="192" height="44" alt="Open the checker" /></a>
+  <a href="https://www.twitch.tv/settings/profile"><img src="docs/buttons/twitch-settings.svg" width="192" height="44" alt="Check on Twitch — sign in to view profile settings" /></a>
+</p>
 
-![Twitch Username Checker showing an example result](docs/images/preview.png)
+<p align="center">
+  <a href="docs/PRIVACY.md">Privacy</a> ·
+  <a href="CONTRIBUTING.md">Contribute</a> ·
+  <a href="LICENSE">MIT license</a>
+</p>
 
-## How to use it
+<details>
+  <summary>See the site</summary>
+  <br />
+  <img src="docs/images/preview.png" alt="The checker showing an example result" width="860" />
+</details>
+
+## Using it
 
 Enter a username and click **Check username**, or press Enter.
 Use 4–25 letters, numbers or underscores.
 
-- **Available:** no public account was found, or Twitch confirmed the name is free.
-- **Unavailable:** an account already uses the name, or Twitch says it can't be used.
+| Result | What it means |
+| --- | --- |
+| **Available** | No public account was found, or Twitch confirmed the name is free. |
+| **Unavailable** | An account uses the name, or Twitch says it can't be used. |
 
-**Available doesn't always mean you can use it.** Twitch can hold names after a
-rename, suspension or account deactivation. If the result says **Not confirmed by
-Twitch**, we couldn't check whether the name is held.
+> [!NOTE]
+> **Available isn't a guarantee.** If you see **Not confirmed by Twitch**, the name
+> could still be reserved after a rename, suspension or deactivation. Sign in to
+> Twitch and try it in [Settings → Profile](https://www.twitch.tv/settings/profile)
+> before choosing it. This tool doesn't reserve names or predict release dates.
 
-Before choosing a name, sign in to Twitch and try it in
-[Settings → Profile](https://www.twitch.tv/settings/profile).
-This tool doesn't reserve names or tell you when they'll be released.
+No login is needed here, and searches aren't saved. The name you enter is sent
+to Twitch when you run a check. [More about privacy](docs/PRIVACY.md).
 
-You don't need to sign in here, and searches aren't saved. The name you enter is
-sent to Twitch when you run a check. See [privacy details](docs/PRIVACY.md).
+## Something not working?
 
-## Found a problem?
+Tell us which browser you're using and what happened. Please leave out passwords,
+tokens and account details.
 
-[Open an issue](https://github.com/rafelolv/TwitchUsernameChecker/issues) with your
-browser and what went wrong. Please leave out passwords, tokens and account details.
+<a href="https://github.com/rafelolv/TwitchUsernameChecker/issues"><img src="docs/buttons/report-issue.svg" width="192" height="44" alt="Report a problem on GitHub" /></a>
 
-## Run locally
+<details>
+  <summary>Run locally</summary>
 
 You'll need Node.js 24 and Python 3. There are no dependencies to install.
 
@@ -48,10 +64,14 @@ Open http://127.0.0.1:5173. To run the checks, use another terminal:
 npm run check
 ```
 
-For changes to the project, see [Contributing](CONTRIBUTING.md),
-[Maintenance](docs/MAINTENANCE.md) and [how the checks work](docs/AVAILABILITY.md).
+See [Contributing](CONTRIBUTING.md), [Maintenance](docs/MAINTENANCE.md) and
+[how the checks work](docs/AVAILABILITY.md) for development details.
 
-## License
+</details>
 
-[MIT](LICENSE) · Made by [rafelolv](https://github.com/rafelolv).
-Independent project, not affiliated with Twitch.
+---
+
+<p align="center">
+  Made by <a href="https://github.com/rafelolv">rafelolv</a> · <a href="LICENSE">MIT</a><br />
+  Independent project, not affiliated with Twitch.
+</p>
