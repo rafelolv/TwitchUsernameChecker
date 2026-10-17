@@ -31,7 +31,6 @@ test("100 names run sequentially and preserve unconfirmed availability", async (
   const summary = await checkUsernames(
     Array.from({ length: 100 }, (_, i) => `name${i}`).join("\n"),
     {
-      intervalMs: 0,
       fetcher: async () => {
         calls++;
         active++;
@@ -74,7 +73,6 @@ test("rate limits and failed lookups stop the queue without retries", async () =
     let calls = 0;
     const results = [];
     const summary = await checkUsernames("first_name second_name", {
-      intervalMs: 0,
       fetcher: async () => {
         calls++;
         return response;
@@ -121,4 +119,24 @@ test("stopping between lookups preserves results and sends no next request", asy
   assert.equal(calls, 1);
   assert.equal(summary.reason, "cancelled");
   assert.equal(summary.completed, 1);
+});
+
+test("the next lookup starts as soon as the previous response is handled", async () => {
+  const controller = new AbortController();
+  let calls = 0;
+  const work = checkUsernames("first_name second_name third_name", {
+    signal: controller.signal,
+    fetcher: async () => {
+      calls++;
+      return absent();
+    },
+  });
+  await new Promise((resolve) => setImmediate(resolve));
+  try {
+    assert.equal(calls, 3);
+    assert.equal((await work).reason, "complete");
+  } finally {
+    controller.abort();
+    await work;
+  }
 });

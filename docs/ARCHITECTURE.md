@@ -81,9 +81,9 @@ whitespace or commas. All entries must pass the same 4–25 character validation
 before any request is sent. Case-insensitive duplicates are checked once; the
 100-entry limit applies before deduplication. No entry is silently truncated.
 
-`checker.js` runs a user-started sequential queue with a one-second pause between
-requests, the same 12-second per-request timeout and no retries. Both forms share
-a busy lock, so they cannot overlap. Stop aborts the active request or pause;
+`checker.js` runs a user-started sequential queue without an artificial pause
+between requests, with the same 12-second per-request timeout and no retries. Both forms share
+a busy lock, so they cannot overlap. Stop aborts the active request;
 completed rows stay visible. Any lookup error or rate limit stops the queue and
 leaves remaining entries unchecked. Each row preserves the existing internal
 classification, with a visible “Not confirmed by Twitch” label for unknown names

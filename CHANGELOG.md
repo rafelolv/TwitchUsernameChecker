@@ -3,6 +3,11 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.3.2
+
+- Remove the one-second pause between list lookups, saving 99 seconds of deliberate waiting in a full 100-name list.
+- Keep requests sequential, with cancellation, timeouts and stopping on errors or rate limits.
+
 ## 1.3.1
 
 - Align the list label and limit together, add an expand arrow and remove excess collapsed spacing.

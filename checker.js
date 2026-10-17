@@ -78,23 +78,10 @@ export function parseUsernames(value) {
   return [...new Set(names)];
 }
 
-function pause(ms, signal) {
-  return new Promise((resolve) => {
-    const done = () => {
-      clearTimeout(timer);
-      signal?.removeEventListener("abort", done);
-      resolve();
-    };
-    const timer = setTimeout(done, ms);
-    signal?.addEventListener("abort", done, { once: true });
-    if (signal?.aborted) done();
-  });
-}
-
 // A user-started queue: one request at a time, no retries, stop on failure.
 export async function checkUsernames(
   value,
-  { signal, onResult = () => {}, fetcher = fetch, intervalMs = 1000 } = {},
+  { signal, onResult = () => {}, fetcher = fetch } = {},
 ) {
   const names = parseUsernames(value);
   let completed = 0;
@@ -123,7 +110,6 @@ export async function checkUsernames(
     onResult(item, completed, names.length);
     if (item.state === "error" || item.state === "rate-limited")
       return { reason: item.state, completed, total: names.length };
-    if (completed < names.length) await pause(intervalMs, signal);
   }
   return { reason: "complete", completed, total: names.length };
 }

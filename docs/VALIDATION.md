@@ -297,7 +297,6 @@ Limitations:
   the queue stops and leaves remaining names unchecked. Hosted deployment is a
   separate check after pushing.
 
-
 ## 1.3.1 list disclosure spacing — 2026-10-17
 
 - `npm run check` passes. Temporary Chrome profile: verified keyboard expansion
@@ -306,3 +305,29 @@ Limitations:
   and refreshed both README previews.
 - Lookup responses were mocked for the preview; request behavior is unchanged.
   No new live Twitch checks were needed for this layout change.
+
+## 1.3.2 list speed — 2026-10-17
+
+### Automated and mocked evidence
+
+- `npm run check` passes. Tests cover a 100-name queue, sequential requests,
+  immediate progression after each response, validation, cancellation and stopping
+  on failed/rate-limited responses. No availability classification was changed.
+- Same four names and simulated 60ms responses: the previous queue took 3,245ms;
+  the updated queue took 242ms. This isolates the removed one-second pauses; it is
+  not a live Twitch speed guarantee. A full 100-name completion removes 99 seconds
+  of deliberate waiting, with response latency still added for each request.
+- Temporary Chrome profile, actual local page with mocked Twitch responses:
+  list validation, deduplication, shared busy lock, mixed results, warnings,
+  error/429 stopping, cancellation, clearing and single search passed. Light/dark
+  and 320px layouts also passed. No UI or storage behavior was changed.
+
+### Live limitations
+
+- Temporary Chrome profile on the local page without interception: a two-name
+  list completed with `twitch` → `taken` and `falsiqkdkdk34` → `unknown`.
+  This verifies a short live queue, not sustained throughput.
+- The unsupported Twitch endpoint may respond slowly or limit requests. The queue
+  still sends one request at a time, waits up to 12 seconds per request and stops
+  on failures without retries. Simulated timings do not prove sustained live
+  throughput or availability. No live 100-name scan was run.
