@@ -3,12 +3,19 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
-## Unreleased — 1.0.1
+## 1.0.1 — 2026-10-16
 
 - Show successful absent-profile lookups as “No account found”, with profile and
   availability facts displayed separately.
 - Translate the entire interface, validation messages and metadata to English.
 - Require English for all project text in agent and contribution rules.
+
+Validation:
+
+- Six unit cases and syntax checks passed. Hosted Chrome checks covered all six
+  states, legacy history and 320–1440px layouts without JavaScript errors.
+- The live reported username returned “No account found”; `twitch` returned
+  “Taken”. Pages deployment completed successfully.
 
 Limitations:
 

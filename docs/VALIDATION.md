@@ -103,5 +103,13 @@ Limitations:
 - Separate local live queries returned “No account found” for the reported name
   and “Taken” for `twitch`. Actual claimability was not confirmed; registration,
   signed-in renaming, Firefox/Safari and physical devices remain untested.
-- Deployment of this patch and hosted verification are pending. The published
-  v1.0.0 tag and assets are unchanged.
+- Pushed `a773165` to `main`; the
+  [1.0.1 Pages workflow](https://github.com/rafelolv/TwitchUsernameChecker/actions/runs/38996727668)
+  completed successfully. The public page serves `lang="en"`.
+- Repeated the six-state simulated browser matrix on the hosted page, including
+  old history, keyboard submission and all four viewport widths. The live reported
+  username displayed “No account found”, “Profile: Not found” and “Availability:
+  Not verified”; `twitch` displayed “Taken”, “Profile: Found” and “Availability:
+  Taken”. No JS errors or horizontal overflow were observed.
+- Version 1.0.1 is deployed to Pages. The published v1.0.0 GitHub release tag and
+  downloadable assets remain unchanged; this patch did not create a new tag.
