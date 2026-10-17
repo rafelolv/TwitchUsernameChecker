@@ -3,6 +3,10 @@
 Versions follow three-part semver; `package.json` is the version source.
 Entries remain Unreleased until publication is verified.
 
+## 1.3.3
+
+- Remove the sign-in question from the FAQ.
+
 ## 1.3.2
 
 - Remove the one-second pause between list lookups, saving 99 seconds of deliberate waiting in a full 100-name list.

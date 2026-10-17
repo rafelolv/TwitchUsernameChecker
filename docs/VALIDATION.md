@@ -331,3 +331,11 @@ Limitations:
   still sends one request at a time, waits up to 12 seconds per request and stops
   on failures without retries. Simulated timings do not prove sustained live
   throughput or availability. No live 100-name scan was run.
+
+
+## 1.3.3 FAQ cleanup — 2026-10-17
+
+- `npm run check` passes. Temporary Chrome profile: the sign-in question is absent,
+  two FAQ entries remain, and both themes fit at 320px without horizontal overflow.
+  Refreshed the README previews. Preview lookup responses were mocked; no request
+  behavior changed and no live Twitch checks were needed.
